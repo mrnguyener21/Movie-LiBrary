@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Upcoming = () => {
+const UpComing = () => {
     return (
         <div>
-            <h1>Upcoming</h1>
+            <h1>UpComing</h1>
         </div>
     )
 }
 
-export default Upcoming;
+export default UpComing;

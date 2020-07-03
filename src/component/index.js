@@ -4,7 +4,7 @@ export {default as SideBar} from './SideBar/SideBar';
 //Discover Section
 export {default as Popular} from './Page/Discover/Popular/Popular'
 export {default as TopRated} from './Page/Discover/TopRated/TopRated'
-export {default as Upcoming} from './Page/Discover/Upcoming/Upcoming'
+export {default as UpComing} from './Page/Discover/UpComing/UpComing'
 
 //Genre Section
 export {default as Action} from './Page/Genre/Action/Action';
