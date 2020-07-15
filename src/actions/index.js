@@ -3,8 +3,8 @@ import API from '../api';
 
 // export const testOne = () => ({type:TESTONE});
 export const fetchMovies = () => async (dispatch) => {
-  const { data } = await API.get('/discover/movie');
+  const { data } = await API.get('/genre/movie/list');
 
-  dispatch({ type: FETCH_MOVIES, payload: data.results });
+  dispatch({ type: FETCH_MOVIES, payload: data.genres });
 };
 
