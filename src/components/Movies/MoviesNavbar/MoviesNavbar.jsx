@@ -1,6 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './MoviesNavbar.scss';
+import styles from './MoviesNavbar.module.scss';
 
 const MoviesNavbar = () => (
   <div className={styles.container}>
