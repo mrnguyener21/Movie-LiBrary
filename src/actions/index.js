@@ -1,7 +1,6 @@
 import { FETCH_DISCOVER_MOVIES, FETCH_POPULAR_MOVIES, FETCH_NOW_PLAY_MOVIES, FETCH_TOP_RATED_MOVIES, FETCH_UPCOMING_MOVIES, FETCH_MOVIE_GENRE } from '../constants/actionType';
 import API from '../api';
 
-// export const testOne = () => ({type:TESTONE});
 export const fetchDiscoverMovies = () => async (dispatch) => {
   const { data } = await API.get('/discover/movie');
 

@@ -10,7 +10,11 @@ POSSIBLE ACTIONS
 -loading data
 -probably an action for every directory
 
-GOALS FOR 07/15/2020
--figure out how to organize the data so it can flow correctly to the appropriate files
--try to create all of the actions for the homepage?
+
+NOTES FOR GENRE
+-will probably place the array of different genres in the drop down menu. when you click on a genre, it will map through discover movies array and pull the ones that matches the genre's ID.
+
+GOALS FOR THE WEEKEND OF 07/18 - 07/19
+-create the layout and design fo the homepage
+-move fetchMovieGenre to the movienavbar.jsx
 
