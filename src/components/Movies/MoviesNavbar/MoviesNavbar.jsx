@@ -10,7 +10,6 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-import styles from './MoviesNavbar.module.scss';
 import makeStyles from './styles';
 
 const MoviesNavbar = () => {
@@ -18,26 +17,38 @@ const MoviesNavbar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        color="transparent"
+      >
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
+            // color="red"
             aria-label="open drawer"
           >
             <MenuIcon />
+
           </IconButton>
           <div className={classes.title}>
-            <Link className={classes.link} to="/movies">movies link</Link>
-            <Link className={classes.link} to="/tv">tv link</Link>
+            <Typography className={classes.linkContainer}>
+              <Link className={classes.link} to="/movies">movies</Link>
+              <Link className={classes.link} to="/tv">tv</Link>
+              <div>genre</div>
+            </Typography>
+            {/*
+            <Typography>
+            </Typography>
+
+            <Typography>Genre</Typography> */}
           </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-                // placeholder="Search…"
+              placeholder="Search..."
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

@@ -3,20 +3,33 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: 'grey',
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    // color: 'red',
+    display: 'block',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
   title: {
     flexGrow: 1,
-    display: 'none',
+    display: 'flex',
+    flexDirection: 'row',
+    border: 'solid',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
+  linkContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   link: {
-    color: 'black',
+    color: 'white',
     textDecoration: 'none',
+    paddingRight: '1%',
   },
   search: {
     position: 'relative',

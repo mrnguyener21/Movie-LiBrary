@@ -1,10 +1,9 @@
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
-
 import { MoviesHome, TVShowsHome } from './components';
+
+import styles from './App.module.scss';
 
 const App = () => (
   <div>

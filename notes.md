@@ -18,3 +18,13 @@ GOALS FOR THE WEEKEND OF 07/18 - 07/19
 -create the layout and design fo the homepage
 -move fetchMovieGenre to the movienavbar.jsx
 
+https://material-ui.com/styles/basics/
+https://material-ui.com/components/floating-action-button/
+https://material-ui.com/components/drawers/
+https://material-ui.com/components/menus/
+https://material-ui.com/components/cards/
+https://material-ui.com/components/app-bar/
+https://material-ui.com/components/icons/#installation
+https://material-ui.com/components/app-bar/
+
+
