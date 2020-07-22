@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
-import { styledMenu, StyledMenuItem } from './GenreDropDown_Styles';
+import { StyledMenu, StyledMenuItem } from './GenreDropDown_Styles';
 import { fetchMovieGenre } from '../../../../actions';
 
 const GenreDropDown = () => {
@@ -24,10 +24,26 @@ const GenreDropDown = () => {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
+        // color="grey"
         onClick={handleClick}
       >Genre
       </Button>
+      <StyledMenu
+        id="customized-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <StyledMenuItem>
+          <p>test</p>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <p>test 2</p>
+
+        </StyledMenuItem>
+
+      </StyledMenu>
       <button onClick={() => dispatch(fetchMovieGenre())}>movie genre</button>
       <button onClick={() => console.log(test)}>console log</button>
     </div>

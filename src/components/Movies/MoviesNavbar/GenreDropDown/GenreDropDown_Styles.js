@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, MenuItem } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { blueGrey } from '@material-ui/core/colors';
 
 // export default withStyles((theme) => {
 
@@ -28,7 +29,7 @@ export const StyledMenu = withStyles({
 export const StyledMenuItem = withStyles((theme) => ({
   root: {
     '&:focus': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: 'lightBlue',
       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
         color: theme.palette.common.white,
       },
