@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import GenreDropDown from './GenreDropDown/GenreDropDown';
 
 import makeStyles from './styles';
 
@@ -35,13 +36,8 @@ const MoviesNavbar = () => {
             <Typography className={classes.linkContainer}>
               <Link className={classes.link} to="/movies">movies</Link>
               <Link className={classes.link} to="/tv">tv</Link>
-              <div>genre</div>
+              <GenreDropDown />
             </Typography>
-            {/*
-            <Typography>
-            </Typography>
-
-            <Typography>Genre</Typography> */}
           </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
