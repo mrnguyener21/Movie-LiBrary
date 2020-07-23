@@ -1,14 +1,15 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-undef */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { StyledMenu, StyledMenuItem } from './GenreDropDown_Styles';
 import { fetchMovieGenre } from '../../../../actions';
 
 const GenreDropDown = () => {
   const dispatch = useDispatch();
-  const movie = useSelector((state) => state.movie);
+  const genres = useSelector((state) => state.movie);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -18,6 +19,11 @@ const GenreDropDown = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    dispatch(fetchMovieGenre());
+  }, []);
+
   return (
     <div>
       <Button
@@ -36,16 +42,14 @@ const GenreDropDown = () => {
         onClose={handleClose}
       >
         <StyledMenuItem>
-          <p>test</p>
+          {
+            genres.map(({ id, name }) => (
+              <Typography>{name}</Typography>))
+          }
         </StyledMenuItem>
-        <StyledMenuItem>
-          <p>test 2</p>
-
-        </StyledMenuItem>
-
       </StyledMenu>
-      <button onClick={() => dispatch(fetchMovieGenre())}>movie genre</button>
-      <button onClick={() => console.log(movie)}>console log</button>
+      { console.log(genres)} {/* returns the proper array */}
+      { console.log(genres.name)} {/* returns undefined */}
     </div>
   );
 };
