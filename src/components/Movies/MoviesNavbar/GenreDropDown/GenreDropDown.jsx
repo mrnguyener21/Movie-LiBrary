@@ -48,8 +48,6 @@ const GenreDropDown = () => {
           }
         </StyledMenuItem>
       </StyledMenu>
-      { console.log(genres)} {/* returns the proper array */}
-      { console.log(genres.name)} {/* returns undefined */}
     </div>
   );
 };
