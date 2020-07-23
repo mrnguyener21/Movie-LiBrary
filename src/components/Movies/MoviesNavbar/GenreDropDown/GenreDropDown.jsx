@@ -8,7 +8,7 @@ import { fetchMovieGenre } from '../../../../actions';
 
 const GenreDropDown = () => {
   const dispatch = useDispatch();
-  const test = useSelector((state) => state.test);
+  const movie = useSelector((state) => state.movie);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -23,7 +23,7 @@ const GenreDropDown = () => {
       <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
-        variant="contained"
+        // variant="contained"
         // color="grey"
         onClick={handleClick}
       >Genre
@@ -45,7 +45,7 @@ const GenreDropDown = () => {
 
       </StyledMenu>
       <button onClick={() => dispatch(fetchMovieGenre())}>movie genre</button>
-      <button onClick={() => console.log(test)}>console log</button>
+      <button onClick={() => console.log(movie)}>console log</button>
     </div>
   );
 };

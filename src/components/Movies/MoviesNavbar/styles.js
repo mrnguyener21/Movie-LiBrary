@@ -17,7 +17,6 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'row',
-    border: 'solid',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
