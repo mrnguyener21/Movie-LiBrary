@@ -34,5 +34,11 @@ GOALS AS OF 07/23/20
 -change the display to where they have pagination? where if you click on the left or right array you can move through the list
 -turn the upcoming into a slideshow (similar to netflix)
 
+PAGINATION
+-for the home page, i want it to display a certain amount based on resolution. i want a button on each side where as we click it we scroll by not displaying the last item and then adding the next item in the array
+-apparently its called carousel
+-https://react-slick.neostack.com/docs/get-started
+
+
 
 

@@ -18,8 +18,8 @@ const MoviesHome = () => {
     <div>
       <MoviesNavbar />
       {console.log(movies)}
-      {movies.map(({ title, release_date }) => (
-        <p>{title}</p>
+      {movies.map(({ title }) => (
+        <div>{title}</div>
       ))}
     </div>
   );
