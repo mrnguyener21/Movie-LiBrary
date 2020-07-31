@@ -29,8 +29,6 @@ const GenreDropDown = () => {
       <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
-        // variant="contained"
-        // color="grey"
         onClick={handleClick}
       >Genre
       </Button>
@@ -43,7 +41,7 @@ const GenreDropDown = () => {
       >
         <StyledMenuItem>
           {
-            genres.map(({ id, name }) => (
+            genres.map(({ name }) => (
               <Typography>{name}</Typography>))
           }
         </StyledMenuItem>

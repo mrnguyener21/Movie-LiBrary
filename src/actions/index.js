@@ -1,3 +1,7 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-await-in-loop */
+import { useParams } from 'react-router-dom';
+import Axios from 'axios';
 import { FETCH_DISCOVER_MOVIES, FETCH_POPULAR_MOVIES, FETCH_NOW_PLAY_MOVIES, FETCH_TOP_RATED_MOVIES, FETCH_UPCOMING_MOVIES, FETCH_MOVIE_GENRE } from '../constants/actionType';
 import API from '../api';
 
@@ -23,8 +27,10 @@ export const fetchTopRatedMovies = () => async (dispatch) => {
 };
 
 export const fetchUpComingMovies = () => async (dispatch) => {
-  const { data } = await API.get('/movie/upcoming');
-  dispatch({ type: FETCH_UPCOMING_MOVIES, payload: data.results });
+  for (let page = 1; page < 11; page++) {
+    const { data } = await API.get('movie/upcoming', { params: { page } });
+    dispatch({ type: FETCH_UPCOMING_MOVIES, payload: data.results });
+  }
 };
 
 export const fetchMovieGenre = () => async (dispatch) => {

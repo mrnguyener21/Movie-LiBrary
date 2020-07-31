@@ -27,4 +27,12 @@ https://material-ui.com/components/app-bar/
 https://material-ui.com/components/icons/#installation
 https://material-ui.com/components/app-bar/
 
+GOALS AS OF 07/23/20
+-display the data for upcoming, now playing,  popular, top rated, latest
+-figure out how to map through all of the pages instead of just the first page
+-get images name and rating for all of them
+-change the display to where they have pagination? where if you click on the left or right array you can move through the list
+-turn the upcoming into a slideshow (similar to netflix)
+
+
 
