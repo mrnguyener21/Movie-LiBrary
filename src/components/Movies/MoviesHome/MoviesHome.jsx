@@ -14,7 +14,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
 import { MoviesNavbar } from '../..';
-import { fetchDiscoverMovies, fetchPopularMovies, fetchNowPlayingMovies, fetchTopRatedMovies, fetchUpComingMovies } from '../../../actions';
+import { fetchUpComingMovies } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
@@ -27,12 +27,12 @@ const MoviesHome = () => {
   }, []);
 
   const settings = {
-    // dots: true,
+    dots: true,
     arrow: true,
     infinite: false,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 6,
     className: 'slides',
 
   };
@@ -42,12 +42,14 @@ const MoviesHome = () => {
       {console.log(movies)}
 
       <div className={styles.movieList}>
+
         <Slider {...settings}>
+
           {movies.map(({ poster_path }) => (
             poster_path
               ? (
-                <div className={styles.imageContainer}>
-                  <img alt={poster_path} className={styles.image} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                <div className={styles.posterContainer}>
+                  <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                 </div>
               )
               : null
