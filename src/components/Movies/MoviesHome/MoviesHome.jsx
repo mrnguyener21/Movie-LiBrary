@@ -22,7 +22,7 @@ const MoviesHome = () => {
       {console.log(movies)}
       <div className={styles.movieList}>
         {movies.map(({ title, poster_path }) => (
-          poster_path ? <img alt={title} className={styles.image} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} /> : <img alt={title} className={styles.image} src="https://www.fillmurray.com/200/300" />
+          poster_path ? <img alt={title} className={styles.image} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} /> : null
         ))}
       </div>
     </div>

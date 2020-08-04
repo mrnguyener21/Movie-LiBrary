@@ -39,6 +39,11 @@ PAGINATION
 -apparently its called carousel
 -https://react-slick.neostack.com/docs/get-started
 
+GOALS FOR 08/01
+-find out how to pick starting point to fetch
+- try to implement carousel and lazy loading
+- implement the title and look into rating system
+
 
 
 
