@@ -2,3 +2,10 @@
 .movieList{
   padding: 2%;
 }
+
+.slick-prev:before {
+  background-color: yellow !important;
+}
+.slick-next:before {
+  background-color: yellow !important;
+}
