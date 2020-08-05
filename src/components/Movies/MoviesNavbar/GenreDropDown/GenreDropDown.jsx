@@ -9,7 +9,7 @@ import { fetchMovieGenre } from '../../../../actions';
 
 const GenreDropDown = () => {
   const dispatch = useDispatch();
-  const genres = useSelector((state) => state.movie);
+  const { genres } = useSelector((state) => state.movie);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -41,8 +41,8 @@ const GenreDropDown = () => {
       >
         <StyledMenuItem>
           {
-            genres.map(({ name }) => (
-              <Typography>{name}</Typography>))
+            genres ? genres.map(({ name }) => (
+              <Typography>{name}</Typography>)) : null
           }
         </StyledMenuItem>
       </StyledMenu>

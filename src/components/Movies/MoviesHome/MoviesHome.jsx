@@ -15,64 +15,119 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
 import { MoviesNavbar } from '../..';
-import { fetchUpComingMovies, fetchDiscoverMovies } from '../../../actions';
+import { fetchUpComingMovies, fetchDiscoverMovies, fetchMovieCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
 const MoviesHome = () => {
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movie);
+  const movieCategories = useSelector((state) => state.movie);
 
   useEffect(() => {
     // dispatch(fetchUpComingMovies());
-    dispatch(fetchDiscoverMovies());
+    // dispatch(fetchDiscoverMovies());
+    dispatch(fetchMovieCategory('popular'));
+    dispatch(fetchMovieCategory('upcoming'));
+    // dispatch(fetchMovieCategory('upcoming'));
   }, []);
 
+  // discover is considered undefined because it runs before the data is finished being fetched so it is "undefined". A while loop seems to not work and just break the app
   const settings = {
     // dots: true,
     // arrow: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
+    // slidesToShow: 3,
+    slidesToShow: 6,
     slidesToScroll: 6,
     className: 'slides',
 
   };
-  // discover is considered undefined because it runs before the data is finished being fetched so it is "undefined". A while loop seems to not work and just break the app
+
+  const categories = Object.keys(movieCategories);
+  const values = Object.values(movieCategories);
+
   return (
     <div>
       <MoviesNavbar />
-      {/* {console.log(movies)} */}
+      {categories.map((category, i) => (
+        <Slider {...settings}>
+          {values[i].map(({ backdrop_path }) => (
+            backdrop_path ? (
+              <div className={styles.posterContainer}>
+                <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
+              </div>
+            ) : null
+          ))}
+        </Slider>
+      ))}
+
+      {/* {movieCategories.upcoming ? movieCategories[category].map((movie) => (
+
+            <div className={styles.posterContainer}>
+              <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
+            </div>
+          ))
+            : null}
+        </Slider> */}
+
+      {/* {console.log(movieCategories)}
+
+      {movieCategories.popular ? movieCategories.popular.map(({ backdrop_path }) => (
+        <div>
+          <div className={styles.posterContainer}>
+            <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
+          </div>
+        </div>
+      )) : null} */}
+
+      {/*
       {movies.map(({ discover }) => {
         console.log(discover);
         // while (discover) {
-        discover.map(({ poster_path }) => (
-          poster_path
+        discover.map(({ backdrop_path }) => (
+          backdrop_path
             ? (
               <div className={styles.posterContainer}>
-                <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
               </div>
             )
             : console.log('discover did not map')
         ));
         // }
-      })}
-      {/* <div className={styles.movieList}>
+      })} */}
+
+      {/* const movieCategories = {
+  popular: []
+  upcoming: []
+} */}
+      {/*
+      <div className={styles.upcomingMovies}>
         <h1>Upcoming Movies</h1>
         <Slider {...settings}>
 
-          {movies.map(({ poster_path, type }) => (
-            poster_path
-              ? (
-                <div className={styles.posterContainer}>
-                  <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                  <p>{type}</p>
-                </div>
-              )
-              : null
-          ))}
+          {movieCategories.upcoming ? movieCategories.upcoming.map(({ backdrop_path }) => (
+
+            <div className={styles.posterContainer}>
+              <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
+            </div>
+          ))
+            : null}
         </Slider>
-      </div> */}
+      </div>
+      <div className={styles.popularMovies}>
+        <h1>popular Movies</h1>
+        <Slider {...settings}>
+
+          {movieCategories.popular ? movieCategories.popular.map(({ backdrop_path }) => (
+
+            <div>
+              <img alt={backdrop_path} className={styles.poster} width="500" src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
+            </div>
+          ))
+            : null}
+        </Slider> */}
+      {/* </div> */}
     </div>
   );
 };

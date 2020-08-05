@@ -2,14 +2,20 @@
 /* eslint-disable no-await-in-loop */
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
-import { FETCH_DISCOVER_MOVIES, FETCH_POPULAR_MOVIES, FETCH_NOW_PLAY_MOVIES, FETCH_TOP_RATED_MOVIES, FETCH_UPCOMING_MOVIES, FETCH_MOVIE_GENRE } from '../constants/actionType';
+import { FETCH_DISCOVER_MOVIES, FETCH_MOVIE_CATEGORY, FETCH_POPULAR_MOVIES, FETCH_NOW_PLAY_MOVIES, FETCH_TOP_RATED_MOVIES, FETCH_UPCOMING_MOVIES, FETCH_MOVIE_GENRE } from '../constants/actionType';
 import API from '../api';
 
-export const fetchDiscoverMovies = () => async (dispatch) => {
-  const { data } = await API.get('/discover/movie');
+export const fetchMovieCategory = (category) => async (dispatch) => {
+  const { data: { results } } = await API.get(`/movie/${category}`);
 
-  dispatch({ type: FETCH_DISCOVER_MOVIES, payload: data.results });
+  dispatch({ type: FETCH_MOVIE_CATEGORY, payload: { category, results } });
 };
+
+// export const fetchDiscoverMovies = () => async (dispatch) => {
+//   const { data } = await API.get('/discover/movie');
+
+//   dispatch({ type: FETCH_DISCOVER_MOVIES, payload: data.results });
+// };
 
 export const fetchPopularMovies = () => async (dispatch) => {
   const { data } = await API.get('/movie/popular');
