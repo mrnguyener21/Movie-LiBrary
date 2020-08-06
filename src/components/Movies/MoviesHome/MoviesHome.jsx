@@ -26,7 +26,7 @@ const MoviesHome = () => {
   useEffect(() => {
     // dispatch(fetchUpComingMovies());
     // dispatch(fetchDiscoverMovies());
-    dispatch(fetchMovieCategory('popular'));
+    // dispatch(fetchMovieCategory('popular'));
     dispatch(fetchMovieCategory('upcoming'));
     // dispatch(fetchMovieCategory('upcoming'));
   }, []);
@@ -39,7 +39,7 @@ const MoviesHome = () => {
     speed: 500,
     // slidesToShow: 3,
     slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToScroll: 1,
     className: 'slides',
 
   };
@@ -50,94 +50,26 @@ const MoviesHome = () => {
   return (
     <div>
       <MoviesNavbar />
-      {categories.map((category, i) => (
-        <Slider {...settings}>
-          {values[i].map(({ backdrop_path }) => (
-            backdrop_path ? (
-              <div className={styles.posterContainer}>
-                <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
-              </div>
-            ) : null
-          ))}
-        </Slider>
-      ))}
-
-      {/* {movieCategories.upcoming ? movieCategories[category].map((movie) => (
-
-            <div className={styles.posterContainer}>
-              <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
-            </div>
-          ))
-            : null}
-        </Slider> */}
-
-      {/* {console.log(movieCategories)}
-
-      {movieCategories.popular ? movieCategories.popular.map(({ backdrop_path }) => (
-        <div>
-          <div className={styles.posterContainer}>
-            <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
+      <div className={styles.container}>
+        {/* {console.log(movieCategories)} */}
+        {/* {categories.map((category, i) => (
+          <div>
+            {category !== 'genres' ? <h1>{category}</h1> : null}
+            <Slider {...settings}>
+              {values[i].map(({ poster_path }) => (
+                poster_path ? (
+                  <div>
+                    <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                  </div>
+                ) : null
+              ))}
+            </Slider>
           </div>
-        </div>
-      )) : null} */}
-
-      {/*
-      {movies.map(({ discover }) => {
-        console.log(discover);
-        // while (discover) {
-        discover.map(({ backdrop_path }) => (
-          backdrop_path
-            ? (
-              <div className={styles.posterContainer}>
-                <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
-              </div>
-            )
-            : console.log('discover did not map')
-        ));
-        // }
-      })} */}
-
-      {/* const movieCategories = {
-  popular: []
-  upcoming: []
-} */}
-      {/*
-      <div className={styles.upcomingMovies}>
-        <h1>Upcoming Movies</h1>
-        <Slider {...settings}>
-
-          {movieCategories.upcoming ? movieCategories.upcoming.map(({ backdrop_path }) => (
-
-            <div className={styles.posterContainer}>
-              <img alt={backdrop_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
-            </div>
-          ))
-            : null}
-        </Slider>
+        ))} */}
       </div>
-      <div className={styles.popularMovies}>
-        <h1>popular Movies</h1>
-        <Slider {...settings}>
-
-          {movieCategories.popular ? movieCategories.popular.map(({ backdrop_path }) => (
-
-            <div>
-              <img alt={backdrop_path} className={styles.poster} width="500" src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
-            </div>
-          ))
-            : null}
-        </Slider> */}
-      {/* </div> */}
     </div>
   );
 };
 
 export default MoviesHome;
 
-{ /* <button onClick={() => dispatch(fetchDiscoverMovies())}>discover movies</button>
-<button onClick={() => dispatch(fetchPopularMovies())}>popular movies</button>
-<button onClick={() => dispatch(fetchNowPlayingMovies())}>now playing movies</button>
-<button onClick={() => dispatch(fetchTopRatedMovies())}>top rated movies</button>
-<button onClick={() => dispatch(fetchUpComingMovies())}>upcoming movies</button>
-<button onClick={() => dispatch(fetchMovieGenre())}>movie genres</button>
-<button onClick={() => console.log(test)}>console log</button> */ }
