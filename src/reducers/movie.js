@@ -1,9 +1,4 @@
-import { FETCH_DISCOVER_MOVIES, FETCH_MOVIE_CATEGORY, FETCH_POPULAR_MOVIES, FETCH_NOW_PLAY_MOVIES, FETCH_TOP_RATED_MOVIES, FETCH_UPCOMING_MOVIES, FETCH_MOVIE_GENRE } from '../constants/actionType';
-
-// const movieCategories = {
-//   discover: [{ movie, id }, { movie, id }],
-//   top_rated: [{ movie, id }, { movie, id }],
-// };
+import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, FETCH_INDIVIDUAL_MOVIE_GENRE } from '../constants/actionType';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -11,6 +6,9 @@ export default (state = {}, action) => {
       return { ...state, [action.payload.category]: action.payload.totalMovies };
 
     case FETCH_MOVIE_GENRE: return { ...state, genres: action.payload };
+
+    case FETCH_INDIVIDUAL_MOVIE_GENRE: return { ...state, discover: action.payload };
+
     default: return state;
   }
 };

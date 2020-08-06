@@ -10,13 +10,13 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import Slider from 'react-slick';
-
 import { MoviesNavbar } from '../..';
-import { fetchUpComingMovies, fetchDiscoverMovies, fetchMovieCategory } from '../../../actions';
+import MoviesGallery from '../MoviesGallery/MoviesGallery';
+import { fetchMovieCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
@@ -57,8 +57,11 @@ const MoviesHome = () => {
 
   return (
     <div>
-      <MoviesNavbar />
-      <div className={styles.container}>
+      {/* <MoviesNavbar /> */}
+      <MoviesGallery />
+
+      {/* comment below is the data for the actual movie home page. temporarily while working on other pages */}
+      {/* <div className={styles.container}>
         {categories.map((category, i) => (
           <div>
             {category === 'upcoming' ? <h1>Upcoming Movies</h1> : null}
@@ -76,7 +79,7 @@ const MoviesHome = () => {
             </Slider>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

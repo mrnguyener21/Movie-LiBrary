@@ -23,6 +23,7 @@ const GenreDropDown = () => {
   useEffect(() => {
     dispatch(fetchMovieGenre());
   }, []);
+  // console.log(genres);
 
   return (
     <div>
