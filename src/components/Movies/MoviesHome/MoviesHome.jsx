@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-unresolved */
@@ -48,14 +49,22 @@ const MoviesHome = () => {
   const categories = Object.keys(movieCategories);
   const values = Object.values(movieCategories);
 
+  // const title = 'test';
+
+  // if (category === 'upcoming') {
+  //   title = 'Upcoming Movies';
+  // }
+
   return (
     <div>
       <MoviesNavbar />
       <div className={styles.container}>
-        {console.log(movieCategories)}
         {categories.map((category, i) => (
           <div>
-            {category !== 'genres' ? <h1>{category}</h1> : null}
+            {category === 'upcoming' ? <h1>Upcoming Movies</h1> : null}
+            {category === 'popular' ? <h1>popular Movies</h1> : null}
+            {category === 'top_rated' ? <h1>Top Rated Movies</h1> : null}
+            {category === 'now_playing' ? <h1>Now Playing Movies</h1> : null}
             <Slider {...settings}>
               {values[i].map(({ poster_path }) => (
                 poster_path ? (

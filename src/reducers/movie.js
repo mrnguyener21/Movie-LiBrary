@@ -10,11 +10,6 @@ export default (state = {}, action) => {
     case FETCH_MOVIE_CATEGORY:
       return { ...state, [action.payload.category]: action.payload.totalMovies };
 
-    // case FETCH_DISCOVER_MOVIES: return [...state, { discover: [...action.payload] }];
-    // case FETCH_POPULAR_MOVIES: return [...state, ...action.payload];
-    // case FETCH_NOW_PLAY_MOVIES: return [...state, ...action.payload];
-    // case FETCH_TOP_RATED_MOVIES: return [...state, ...action.payload];
-    // case FETCH_UPCOMING_MOVIES: return [...state, ...action.payload];
     case FETCH_MOVIE_GENRE: return { ...state, genres: action.payload };
     default: return state;
   }
