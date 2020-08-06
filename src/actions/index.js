@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 import { useParams } from 'react-router-dom';
@@ -8,10 +9,12 @@ import API from '../api';
 export const fetchMovieCategory = (category) => async (dispatch) => {
   // eslint-disable-next-line prefer-const
   let totalMovies = [];
-  for (let page = 1; page < 15; page++) {
+  const { data: { total_pages } } = await API.get(`/movie/${category}`);
+
+  for (let page = 1; page < total_pages; page++) {
     const { data: { results } } = await API.get(`/movie/${category}`, { params: { page } });
     totalMovies.push(...results);
-    // console.log(totalMovies);
+
     dispatch({ type: FETCH_MOVIE_CATEGORY, payload: { category, totalMovies } });
   }
 };
@@ -21,7 +24,7 @@ export const fetchMovieGenre = () => async (dispatch) => {
   dispatch({ type: FETCH_MOVIE_GENRE, payload: data.genres });
 };
 
-export const fetchIndividualMovieGenre = () => async (dispatch) => {
-  const { data: { results } } = await API.get('/discover/movie');
-  dispatch({ type: FETCH_INDIVIDUAL_MOVIE_GENRE, payload: results });
-};
+// export const fetchIndividualMovieGenre = () => async (dispatch) => {
+//   const { data: { results } } = await API.get('/discover/movie');
+//   dispatch({ type: FETCH_INDIVIDUAL_MOVIE_GENRE, payload: results });
+// };

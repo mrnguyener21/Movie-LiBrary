@@ -7,7 +7,7 @@ export default (state = {}, action) => {
 
     case FETCH_MOVIE_GENRE: return { ...state, genres: action.payload };
 
-    case FETCH_INDIVIDUAL_MOVIE_GENRE: return { ...state, discover: action.payload };
+      // case FETCH_INDIVIDUAL_MOVIE_GENRE: return { ...state, discover: action.payload };
 
     default: return state;
   }

@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MoviesNavbar } from '../..';
-import { fetchIndividualMovieGenre } from '../../../actions';
+import { fetchMovieCategory } from '../../../actions';
 
 const MoviesGallery = () => {
   const dispatch = useDispatch();
   const movieGenres = useSelector((state) => state.movie);
 
   useEffect(() => {
-    dispatch(fetchIndividualMovieGenre());
+    dispatch(fetchMovieCategory('popular'));
   }, []);
 
   console.log(movieGenres);
