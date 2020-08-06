@@ -26,9 +26,10 @@ const MoviesHome = () => {
   useEffect(() => {
     // dispatch(fetchUpComingMovies());
     // dispatch(fetchDiscoverMovies());
-    // dispatch(fetchMovieCategory('popular'));
     dispatch(fetchMovieCategory('upcoming'));
-    // dispatch(fetchMovieCategory('upcoming'));
+    dispatch(fetchMovieCategory('popular'));
+    dispatch(fetchMovieCategory('top_rated'));
+    dispatch(fetchMovieCategory('now_playing'));
   }, []);
 
   // discover is considered undefined because it runs before the data is finished being fetched so it is "undefined". A while loop seems to not work and just break the app
@@ -51,8 +52,8 @@ const MoviesHome = () => {
     <div>
       <MoviesNavbar />
       <div className={styles.container}>
-        {/* {console.log(movieCategories)} */}
-        {/* {categories.map((category, i) => (
+        {console.log(movieCategories)}
+        {categories.map((category, i) => (
           <div>
             {category !== 'genres' ? <h1>{category}</h1> : null}
             <Slider {...settings}>
@@ -65,7 +66,7 @@ const MoviesHome = () => {
               ))}
             </Slider>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

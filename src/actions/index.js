@@ -11,7 +11,7 @@ export const fetchMovieCategory = (category) => async (dispatch) => {
   for (let page = 1; page < 15; page++) {
     const { data: { results } } = await API.get(`/movie/${category}`, { params: { page } });
     totalMovies.push(...results);
-    console.log(totalMovies);
+    // console.log(totalMovies);
     dispatch({ type: FETCH_MOVIE_CATEGORY, payload: { category, totalMovies } });
   }
 };
