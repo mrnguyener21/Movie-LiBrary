@@ -7,7 +7,7 @@ import { Button, Typography } from '@material-ui/core';
 import { StyledMenu, StyledMenuItem } from './GenreDropDown_Styles';
 import { fetchMovieGenre } from '../../../../actions';
 
-const GenreDropDown = () => {
+const GenreDropDown = ({ chosenGenre }) => {
   const dispatch = useDispatch();
   const { genres } = useSelector((state) => state.movie);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,7 +23,7 @@ const GenreDropDown = () => {
   useEffect(() => {
     dispatch(fetchMovieGenre());
   }, []);
-  // console.log(genres);
+  // console.log(this.props.chosenGenre);
   // console.log(genres);
   return (
     <div>
@@ -41,9 +41,11 @@ const GenreDropDown = () => {
         onClose={handleClose}
       >
         {
-            genres ? genres.map(({ name }) => (
-              <StyledMenuItem onClick={() => console.log('on click works')}>
+            genres ? genres.map(({ name, id }) => (
+              <StyledMenuItem onClick={() => console.log(id)}>
                 <Typography>{name}</Typography>
+                {/* {console.log(`chosen genre in genredropdown fils is ${chosenGenre}`)} */}
+                {/* {console.log(id)} */}
 
               </StyledMenuItem>
             ))

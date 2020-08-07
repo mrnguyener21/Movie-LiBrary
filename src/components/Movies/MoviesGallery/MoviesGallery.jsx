@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable array-callback-return */
 /* eslint-disable camelcase */
@@ -11,7 +13,7 @@ import movie from '../../../reducers/movie';
 const MoviesGallery = () => {
   const dispatch = useDispatch();
   const movieGenres = useSelector((state) => state.movie);
-
+  let chosenGenre = 28;
   useEffect(() => {
     dispatch(fetchMovieCategory('popular'));
   }, []);
@@ -21,14 +23,15 @@ const MoviesGallery = () => {
   return (
     // {map through the popualr array where if the genre array contains # display it on the browser if not null
     <div>
-      <MoviesNavbar />
+      <MoviesNavbar chosenGenre={chosenGenre} />
       <h1>movies </h1>
       {
           movieGenres.popular
-            ? movieGenres.popular.map(({ genre_ids, poster_path }) => (genre_ids.includes(28)
+            ? movieGenres.popular.map(({ genre_ids, poster_path }) => (genre_ids.includes(chosenGenre)
               ? (
                 <div>
                   <img alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                  {console.log(`chosen genre in movie gallery file is ${chosenGenre}`)}
                 </div>
               )
               : null))

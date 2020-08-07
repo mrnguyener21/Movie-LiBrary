@@ -10,7 +10,7 @@ import GenreDropDown from './GenreDropDown/GenreDropDown';
 
 import makeStyles from './styles';
 
-const MoviesNavbar = () => {
+const MoviesNavbar = ({ chosenGenre }) => {
   const classes = makeStyles();
 
   return (
@@ -33,7 +33,7 @@ const MoviesNavbar = () => {
             <Typography className={classes.linkContainer}>
               <Link className={classes.link} to="/movies">movies</Link>
               <Link className={classes.link} to="/tv">tv</Link>
-              <GenreDropDown />
+              <GenreDropDown chosenGenre={chosenGenre} />
             </Typography>
           </div>
           <div className={classes.search}>
