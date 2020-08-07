@@ -8,22 +8,18 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { MoviesNavbar } from '../..';
 import { fetchMovieCategory } from '../../../actions';
-import movie from '../../../reducers/movie';
 
 const MoviesGallery = () => {
   const dispatch = useDispatch();
   const movieGenres = useSelector((state) => state.movie);
-  let chosenGenre = 28;
+  const chosenGenre = useSelector((state) => state.movieGenre);
   useEffect(() => {
     dispatch(fetchMovieCategory('popular'));
   }, []);
 
-  // console.log(movieGenres.popular);
-  // const values = Object.values(movieGenres);
   return (
-    // {map through the popualr array where if the genre array contains # display it on the browser if not null
     <div>
-      <MoviesNavbar chosenGenre={chosenGenre} />
+      <MoviesNavbar />
       <h1>movies </h1>
       {
           movieGenres.popular
@@ -31,11 +27,9 @@ const MoviesGallery = () => {
               ? (
                 <div>
                   <img alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                  {console.log(`chosen genre in movie gallery file is ${chosenGenre}`)}
                 </div>
               )
               : null))
-            // console.log(movieGenres.popular)
 
             : console.log('no')
 

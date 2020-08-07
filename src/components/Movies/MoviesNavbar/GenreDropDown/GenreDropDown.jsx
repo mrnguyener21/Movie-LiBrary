@@ -5,11 +5,12 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Typography } from '@material-ui/core';
 import { StyledMenu, StyledMenuItem } from './GenreDropDown_Styles';
-import { fetchMovieGenre } from '../../../../actions';
+import { fetchMovieGenre, chooseMovieGenre } from '../../../../actions';
 
-const GenreDropDown = ({ chosenGenre }) => {
+const GenreDropDown = () => {
   const dispatch = useDispatch();
   const { genres } = useSelector((state) => state.movie);
+  const chosenGenre = useSelector((state) => state.movieGenre);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -23,8 +24,6 @@ const GenreDropDown = ({ chosenGenre }) => {
   useEffect(() => {
     dispatch(fetchMovieGenre());
   }, []);
-  // console.log(this.props.chosenGenre);
-  // console.log(genres);
   return (
     <div>
       <Button
@@ -42,10 +41,8 @@ const GenreDropDown = ({ chosenGenre }) => {
       >
         {
             genres ? genres.map(({ name, id }) => (
-              <StyledMenuItem onClick={() => console.log(id)}>
+              <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id))}>
                 <Typography>{name}</Typography>
-                {/* {console.log(`chosen genre in genredropdown fils is ${chosenGenre}`)} */}
-                {/* {console.log(id)} */}
 
               </StyledMenuItem>
             ))
