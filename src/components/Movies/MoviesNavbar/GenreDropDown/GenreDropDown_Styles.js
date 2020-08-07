@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors';
 
@@ -35,5 +36,6 @@ export const StyledMenuItem = withStyles((theme) => ({
       },
     },
   },
+
 }))(MenuItem);
 

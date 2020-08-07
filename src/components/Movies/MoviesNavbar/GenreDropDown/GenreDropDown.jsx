@@ -24,7 +24,7 @@ const GenreDropDown = () => {
     dispatch(fetchMovieGenre());
   }, []);
   // console.log(genres);
-
+  // console.log(genres);
   return (
     <div>
       <Button
@@ -40,12 +40,15 @@ const GenreDropDown = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem>
-          {
+        {
             genres ? genres.map(({ name }) => (
-              <Typography>{name}</Typography>)) : null
+              <StyledMenuItem onClick={() => console.log('on click works')}>
+                <Typography>{name}</Typography>
+
+              </StyledMenuItem>
+            ))
+              : null
           }
-        </StyledMenuItem>
       </StyledMenu>
     </div>
   );
