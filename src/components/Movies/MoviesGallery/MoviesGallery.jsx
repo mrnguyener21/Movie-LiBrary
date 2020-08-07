@@ -1,8 +1,12 @@
+/* eslint-disable no-console */
+/* eslint-disable array-callback-return */
+/* eslint-disable camelcase */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MoviesNavbar } from '../..';
 import { fetchMovieCategory } from '../../../actions';
+import movie from '../../../reducers/movie';
 
 const MoviesGallery = () => {
   const dispatch = useDispatch();
@@ -12,12 +16,20 @@ const MoviesGallery = () => {
     dispatch(fetchMovieCategory('popular'));
   }, []);
 
-  console.log(movieGenres);
+  // console.log(movieGenres.popular);
+  const values = Object.values(movieGenres);
   return (
-
+    // {map through the popualr array where if the genre array contains # display it on the browser if not null
     <div>
       <MoviesNavbar />
       <h1>movies gallery</h1>
+      {
+          movieGenres.popular
+            ? console.log(values)
+
+            : console.log('no')
+
+        }
     </div>
   );
 };
