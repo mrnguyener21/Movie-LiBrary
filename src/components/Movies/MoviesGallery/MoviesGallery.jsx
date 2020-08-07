@@ -17,15 +17,22 @@ const MoviesGallery = () => {
   }, []);
 
   // console.log(movieGenres.popular);
-  const values = Object.values(movieGenres);
+  // const values = Object.values(movieGenres);
   return (
     // {map through the popualr array where if the genre array contains # display it on the browser if not null
     <div>
       <MoviesNavbar />
-      <h1>movies gallery</h1>
+      <h1>movies </h1>
       {
           movieGenres.popular
-            ? console.log(values)
+            ? movieGenres.popular.map(({ genre_ids, poster_path }) => (genre_ids.includes(28)
+              ? (
+                <div>
+                  <img alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                </div>
+              )
+              : null))
+            // console.log(movieGenres.popular)
 
             : console.log('no')
 
