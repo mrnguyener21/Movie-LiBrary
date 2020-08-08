@@ -3,7 +3,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: 'grey',
+    backgroundColor: '#15314b',
     position: 'fixed',
     // border: ' solid white',
     width: '100%',
@@ -28,6 +28,8 @@ export default makeStyles((theme) => ({
   linkContainer: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
+    color: 'white',
   },
   link: {
     color: 'white',

@@ -10,7 +10,6 @@ import { fetchMovieGenre, chooseMovieGenre } from '../../../../actions';
 const GenreDropDown = () => {
   const dispatch = useDispatch();
   const { genres } = useSelector((state) => state.movie);
-  const chosenGenre = useSelector((state) => state.movieGenre);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -27,7 +26,7 @@ const GenreDropDown = () => {
 
   return (
     <div>
-      <Button onClick={handleClick}>Genre</Button>
+      <Button style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Genre</Button>
       <StyledMenu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         {genres && genres.map(({ name, id }) => (
           <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id))}>

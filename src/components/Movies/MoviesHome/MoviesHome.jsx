@@ -87,12 +87,16 @@ const MoviesHome = () => {
     infinite: true,
     speed: 500,
     lazyLoad: true,
-
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    // variableWidth: true,
+    // centerPadding: '50px',
+    slidesToShow: 6,
+    slidesToScroll: 6,
     nextArrow: <Arrow />,
     prevArrow: <Arrow />,
-    className: 'slides',
+    className: 'slider',
+    useCSS: true,
+    // variableWidth: true,
+
   };
 
   const categories = Object.keys(movieCategories);
@@ -104,17 +108,17 @@ const MoviesHome = () => {
 
       <div className={styles.container}>
         {categories.map((category, i) => (
-          <div>
+          <div className={styles.movieContainer}>
             {category === 'upcoming' ? <h1>Upcoming Movies</h1> : null}
             {category === 'popular' ? <h1>popular Movies</h1> : null}
             {category === 'top_rated' ? <h1>Top Rated Movies</h1> : null}
             {category === 'now_playing' ? <h1>Now Playing Movies</h1> : null}
-            <Slider {...settings}>
+            <Slider className={styles.slide} {...settings}>
               {values[i].map(({ poster_path, title }) => (
                 poster_path ? (
-                  <div>
+                  <div className={styles.posterContainer}>
                     <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                    <h1 className={styles.title}>{title}</h1>
+                    <h2 className={styles.title}>{title}</h2>
                   </div>
                 ) : null
               ))}

@@ -7,6 +7,7 @@ import { blueGrey } from '@material-ui/core/colors';
 // export default withStyles((theme) => {
 
 // })
+
 export const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -24,13 +25,14 @@ export const StyledMenu = withStyles({
       horizontal: 'center',
     }}
     {...props}
+
   />
 ));
 
 export const StyledMenuItem = withStyles((theme) => ({
   root: {
     '&:focus': {
-      backgroundColor: 'lightBlue',
+      backgroundColor: 'lightgrey',
       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
         color: theme.palette.common.white,
       },

@@ -1,15 +1,36 @@
 
 .container{
-  padding: 2%;
+  padding: 5%;
   color: white;
   background: rgb(32, 32, 32);
-  .poster{
-    border-radius: 25px;
-    width: 90%;
+  .movieContainer{
+    .posterContainer{
+      border-radius: 25px;
+      // border: solid white;
+
+      padding-left: 5%;
+
+
+      .poster{
+        border-radius: 25px;
+        width: 95%;
+
+      }
+      .title{
+        display: flex;
+        // border: solid white;
+        justify-content: center;
+        text-align: center;
+        // padding-left: 5%;
+        // margin-top: 0%;
+
+        margin-bottom: 10%;
+        width: 95%;
+      }
+    }
   }
-  .title{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-  }
+}
+/* the slides */
+.slider{
+  border: solid yellow;
 }

@@ -31,8 +31,8 @@ const MoviesNavbar = () => {
           </IconButton>
           <div className={classes.title}>
             <Typography className={classes.linkContainer}>
-              <Link className={classes.link} to="/movies">movies</Link>
-              <Link className={classes.link} to="/tv">tv</Link>
+              <Link className={classes.link} to="/movies">MOVIES</Link>
+              <Link className={classes.link} to="/tv">TV</Link>
               <GenreDropDown />
             </Typography>
           </div>
