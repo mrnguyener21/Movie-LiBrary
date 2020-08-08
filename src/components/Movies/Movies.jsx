@@ -11,19 +11,16 @@ import MoviesGenre from './MoviesGenre/MoviesGenre';
 // const dispatch = useDispatch();
 
 const Movies = () => {
-  let genreID = useSelector((state) => state.movieGenre);
+  let { genreId } = useSelector((state) => state.movieGenre);
+
   return (
     <>
-      <div>genreID is {genreID}</div>
+      <div>genreID is {genreId}</div>
       {
-        genreID = 0
-          ? <p>works, genreID is {genreID}</p>
-          : (
-            <div>
-              <h1> doesnt work, genreID is {genreID}</h1>
-              <button onClick={() => console.log(genreID)}>check GENREid</button>
-            </div>
-          )
+        // is genre id equal to 0
+        genreId === 0
+          ? <MoviesHome />
+          : <MoviesGenre />
       }
 
     </>

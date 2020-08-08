@@ -7,22 +7,24 @@ import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, CHOOSE_MOVIE_GENRE } from '../
 import API from '../api';
 
 export const fetchMovieCategory = (category) => async (dispatch) => {
-  // eslint-disable-next-line prefer-const
-  let totalMovies = [];
-  const { data: { total_pages } } = await API.get(`/movie/${category}`);
+  const totalMovies = [];
 
-  for (let page = 1; page < 2; page++) {
+  for (let page = 1; page < 5; page++) {
     const { data: { results } } = await API.get(`/movie/${category}`, { params: { page } });
     totalMovies.push(...results);
 
-    dispatch({ type: FETCH_MOVIE_CATEGORY, payload: { category, totalMovies } });
+    dispatch({ type: FETCH_MOVIE_CATEGORY, payload: { category, results: totalMovies } });
   }
 };
 
 export const fetchMovieGenre = () => async (dispatch) => {
   const { data } = await API.get('/genre/movie/list');
+
   dispatch({ type: FETCH_MOVIE_GENRE, payload: data.genres });
 };
 
-export const chooseMovieGenre = (number) => ({ type: CHOOSE_MOVIE_GENRE, payload: number });
+export const chooseMovieGenre = (genreId) => async (dispatch) => {
+  const { data } = await API.get('/discover/movie', { params: { with_genres: genreId } });
 
+  dispatch({ type: CHOOSE_MOVIE_GENRE, payload: { genreId, results: data } });
+};

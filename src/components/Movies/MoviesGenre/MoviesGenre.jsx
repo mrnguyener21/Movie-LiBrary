@@ -11,28 +11,26 @@ import { fetchMovieCategory } from '../../../actions';
 
 const MoviesGenre = () => {
   const dispatch = useDispatch();
-  const movieGenres = useSelector((state) => state.movie);
-  const chosenGenre = useSelector((state) => state.movieGenre);
+  // const movieGenres = useSelector((state) => state.movie);
+  const { data: { results } } = useSelector((state) => state.movieGenre);
   useEffect(() => {
     dispatch(fetchMovieCategory('popular'));
   }, []);
+
+  console.log({ results });
 
   return (
     <div>
       <MoviesNavbar />
       <h1>movies </h1>
       {
-          movieGenres.popular
-            ? movieGenres.popular.map(({ genre_ids, poster_path }) => (genre_ids.includes(chosenGenre)
-              ? (
-                <div>
-                  <img alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                </div>
-              )
-              : null))
-
+          results.length
+            ? results.map(({ genre_ids, poster_path }) => (
+              <div>
+                <img alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+              </div>
+            ))
             : console.log('no')
-
         }
     </div>
   );

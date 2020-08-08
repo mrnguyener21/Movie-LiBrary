@@ -6,7 +6,7 @@
 /* eslint-disable import/named */
 /* eslint-disable no-console */
 /* eslint-disable react/button-has-type */
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Slider from 'react-slick';
@@ -18,9 +18,35 @@ import { fetchMovieCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
+// function SampleNextArrow(props) {
+//   const { className, style, onClick } = props;
+//   console.log('next');
+//   console.log(onClick);
+//   return (
+//     <div
+//       className={className}
+//       style={{ ...style, display: 'block', background: 'red' }}
+//       onClick={onClick}
+//     />
+//   );
+// }
+
+// function SamplePrevArrow(props) {
+//   const { className, style, onClick } = props;
+//   console.log('prev');
+//   return (
+//     <div
+//       className={className}
+//       style={{ ...style, display: 'block', background: 'green' }}
+//       onClick={onClick}
+//     />
+//   );
+// }
+
 const MoviesHome = () => {
   const dispatch = useDispatch();
   const movieCategories = useSelector((state) => state.movie);
+  const slider = useRef(null);
 
   useEffect(() => {
     dispatch(fetchMovieCategory('upcoming'));
@@ -29,17 +55,47 @@ const MoviesHome = () => {
     dispatch(fetchMovieCategory('now_playing'));
   }, []);
 
+  //     const sliderRef = useRef(null);
+
+  //     const [showRightArrow, setShowRightArrow] = useState<boolean>(false);
+  // const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
+  // const [maxNumberOfCardsToShow, setMaxNumberOfCardsToShow] = useState<number>(0);
+
+  // const handleChangeSlide = (currentSlide: number) => {
+  //   const leftArrowVisible = currentSlide !== 0;
+  //   const rightArrowVisible = currentSlide <= data.length - maxNumberOfCardsToShow;
+  // setShowLeftArrow(leftArrowVisible);
+  //   setShowRightArrow(rightArrowVisible);
+  // };
+
+  //   return (
+  //        <SliderWrapper>
+  //          <SliderArrow type="prev" onClick={() => sliderRef.current.slickPrev()} />
+  //          <SliderArrow type="next" onClick={() => sliderRef.current.slickNext()} />
+  //        </SliderWrapper>
+  //   );
+
+  //   {showLeftArrow && ( <SliderArrow type="prev" onClick={() => sliderRef.current.slickPrev()} />)}
+  // ........
+  // {showRightArrow && ( <SliderArrow type="next" onClick={() => sliderRef.current.slickNext()} />)}
+
   const settings = {
     // dots: true,
     // arrow: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
-    // slidesToShow: 3,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    className: 'slides',
+    // afterChange: (currentSlide) => handleChangeSlide(currentSlide),
+    lazyLoad: true,
 
+    // slidesToShow: 3,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    className: 'slides',
   };
+
+  // 20 => 3
 
   const categories = Object.keys(movieCategories);
   const values = Object.values(movieCategories);
@@ -64,6 +120,7 @@ const MoviesHome = () => {
                 ) : null
               ))}
             </Slider>
+
           </div>
         ))}
       </div>

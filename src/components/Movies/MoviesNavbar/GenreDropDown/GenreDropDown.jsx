@@ -24,30 +24,16 @@ const GenreDropDown = () => {
   useEffect(() => {
     dispatch(fetchMovieGenre());
   }, []);
+
   return (
     <div>
-      <Button
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >Genre
-      </Button>
-      <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {
-            genres ? genres.map(({ name, id }) => (
-              <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id))}>
-                <Typography>{name}</Typography>
-
-              </StyledMenuItem>
-            ))
-              : null
-          }
+      <Button onClick={handleClick}>Genre</Button>
+      <StyledMenu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+        {genres && genres.map(({ name, id }) => (
+          <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id))}>
+            <Typography>{name}</Typography>
+          </StyledMenuItem>
+        ))}
       </StyledMenu>
     </div>
   );

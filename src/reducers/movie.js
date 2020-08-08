@@ -3,7 +3,7 @@ import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, FETCH_INDIVIDUAL_MOVIE_GENRE }
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_MOVIE_CATEGORY:
-      return { ...state, [action.payload.category]: action.payload.totalMovies };
+      return { ...state, [action.payload.category]: action.payload.results };
 
     case FETCH_MOVIE_GENRE: return { ...state, genres: action.payload };
 
