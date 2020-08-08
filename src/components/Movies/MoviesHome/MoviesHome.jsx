@@ -13,12 +13,15 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
+
 import { MoviesNavbar } from '../..';
 import { fetchMovieCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
-// function SampleNextArrow(props) {
+// function NextArrow(props) {
 //   const { className, style, onClick } = props;
 //   console.log('next');
 //   console.log(onClick);
@@ -31,7 +34,7 @@ import styles from './MoviesHome.module.scss';
 //   );
 // }
 
-// function SamplePrevArrow(props) {
+// function PrevArrow(props) {
 //   const { className, style, onClick } = props;
 //   console.log('prev');
 //   return (
@@ -46,7 +49,6 @@ import styles from './MoviesHome.module.scss';
 const MoviesHome = () => {
   const dispatch = useDispatch();
   const movieCategories = useSelector((state) => state.movie);
-  const slider = useRef(null);
 
   useEffect(() => {
     dispatch(fetchMovieCategory('upcoming'));
@@ -55,47 +57,43 @@ const MoviesHome = () => {
     dispatch(fetchMovieCategory('now_playing'));
   }, []);
 
-  //     const sliderRef = useRef(null);
-
-  //     const [showRightArrow, setShowRightArrow] = useState<boolean>(false);
-  // const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
-  // const [maxNumberOfCardsToShow, setMaxNumberOfCardsToShow] = useState<number>(0);
-
-  // const handleChangeSlide = (currentSlide: number) => {
-  //   const leftArrowVisible = currentSlide !== 0;
-  //   const rightArrowVisible = currentSlide <= data.length - maxNumberOfCardsToShow;
-  // setShowLeftArrow(leftArrowVisible);
-  //   setShowRightArrow(rightArrowVisible);
-  // };
-
-  //   return (
-  //        <SliderWrapper>
-  //          <SliderArrow type="prev" onClick={() => sliderRef.current.slickPrev()} />
-  //          <SliderArrow type="next" onClick={() => sliderRef.current.slickNext()} />
-  //        </SliderWrapper>
-  //   );
-
-  //   {showLeftArrow && ( <SliderArrow type="prev" onClick={() => sliderRef.current.slickPrev()} />)}
-  // ........
-  // {showRightArrow && ( <SliderArrow type="next" onClick={() => sliderRef.current.slickNext()} />)}
-
+  function Arrow(props) {
+    const { className, style, onClick } = props;
+    console.log(props);
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'darkslategrey', borderRadius: '10px', height: '16.75px', width: '18px' }}
+        onClick={onClick}
+      />
+    );
+  }
+  const SamplePrevArrow = (props) => {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        onClick={onClick}
+      >
+        <FontAwesomeIcon
+          icon={faAngleDoubleLeft}
+          color="#000"
+          size="2x"
+        />
+      </div>
+    );
+  };
   const settings = {
-    // dots: true,
-    // arrow: true,
     infinite: true,
     speed: 500,
-    // afterChange: (currentSlide) => handleChangeSlide(currentSlide),
     lazyLoad: true,
 
-    // slidesToShow: 3,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
     slidesToShow: 5,
     slidesToScroll: 5,
+    nextArrow: <Arrow />,
+    prevArrow: <Arrow />,
     className: 'slides',
   };
-
-  // 20 => 3
 
   const categories = Object.keys(movieCategories);
   const values = Object.values(movieCategories);
@@ -112,10 +110,11 @@ const MoviesHome = () => {
             {category === 'top_rated' ? <h1>Top Rated Movies</h1> : null}
             {category === 'now_playing' ? <h1>Now Playing Movies</h1> : null}
             <Slider {...settings}>
-              {values[i].map(({ poster_path }) => (
+              {values[i].map(({ poster_path, title }) => (
                 poster_path ? (
                   <div>
                     <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                    <h1>{title}</h1>
                   </div>
                 ) : null
               ))}

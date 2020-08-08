@@ -15,9 +15,7 @@ const Movies = () => {
 
   return (
     <>
-      <div>genreID is {genreId}</div>
       {
-        // is genre id equal to 0
         genreId === 0
           ? <MoviesHome />
           : <MoviesGenre />

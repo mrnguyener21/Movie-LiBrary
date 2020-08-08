@@ -1,8 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
-import { useParams } from 'react-router-dom';
-import Axios from 'axios';
+
 import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, CHOOSE_MOVIE_GENRE } from '../constants/actionType';
 import API from '../api';
 
