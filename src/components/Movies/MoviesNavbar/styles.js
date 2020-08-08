@@ -4,6 +4,10 @@ export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'grey',
+    position: 'fixed',
+    // border: ' solid white',
+    width: '100%',
+    zIndex: '1',
   },
   menuButton: {
     marginRight: theme.spacing(2),

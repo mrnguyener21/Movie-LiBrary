@@ -114,7 +114,7 @@ const MoviesHome = () => {
                 poster_path ? (
                   <div>
                     <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                    <h1>{title}</h1>
+                    <h1 className={styles.title}>{title}</h1>
                   </div>
                 ) : null
               ))}
