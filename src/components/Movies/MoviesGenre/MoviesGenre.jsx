@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MoviesNavbar } from '../..';
 import { fetchMovieCategory } from '../../../actions';
 
-const MoviesGallery = () => {
+const MoviesGenre = () => {
   const dispatch = useDispatch();
   const movieGenres = useSelector((state) => state.movie);
   const chosenGenre = useSelector((state) => state.movieGenre);
@@ -38,7 +38,7 @@ const MoviesGallery = () => {
   );
 };
 
-export default MoviesGallery;
+export default MoviesGenre;
 
 // match up the genre numbers to switch between which genre is currently shown
 // figure out how to connect ito the genre drop down

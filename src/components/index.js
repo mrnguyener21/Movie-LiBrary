@@ -1,7 +1,8 @@
 /* eslint-disable import/no-cycle */
+export { default as Movies } from './Movies/Movies';
 export { default as MoviesHome } from './Movies/MoviesHome/MoviesHome';
 export { default as MoviesNavbar } from './Movies/MoviesNavbar/MoviesNavbar';
-export { default as MoviesGallery } from './Movies/MoviesGallery/MoviesGallery';
+export { default as MoviesGenre } from './Movies/MoviesGenre/MoviesGenre';
 export { default as SelectedMovie } from './Movies/SelectedMovie/SelectedMovie';
 
 export { default as TVShowsHome } from './TVShows/TVShowsHome/TVShowsHome';

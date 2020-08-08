@@ -8,14 +8,12 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { MoviesNavbar } from '../..';
-import MoviesGallery from '../MoviesGallery/MoviesGallery';
 import { fetchMovieCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
@@ -25,15 +23,12 @@ const MoviesHome = () => {
   const movieCategories = useSelector((state) => state.movie);
 
   useEffect(() => {
-    // dispatch(fetchUpComingMovies());
-    // dispatch(fetchDiscoverMovies());
     dispatch(fetchMovieCategory('upcoming'));
     dispatch(fetchMovieCategory('popular'));
     dispatch(fetchMovieCategory('top_rated'));
     dispatch(fetchMovieCategory('now_playing'));
   }, []);
 
-  // discover is considered undefined because it runs before the data is finished being fetched so it is "undefined". A while loop seems to not work and just break the app
   const settings = {
     // dots: true,
     // arrow: true,
@@ -49,19 +44,11 @@ const MoviesHome = () => {
   const categories = Object.keys(movieCategories);
   const values = Object.values(movieCategories);
 
-  // const title = 'test';
-
-  // if (category === 'upcoming') {
-  //   title = 'Upcoming Movies';
-  // }
-
   return (
     <div>
-      {/* <MoviesNavbar /> */}
-      <MoviesGallery />
+      <MoviesNavbar />
 
-      {/* comment below is the data for the actual movie home page. temporarily while working on other pages */}
-      {/* <div className={styles.container}>
+      <div className={styles.container}>
         {categories.map((category, i) => (
           <div>
             {category === 'upcoming' ? <h1>Upcoming Movies</h1> : null}
@@ -79,7 +66,7 @@ const MoviesHome = () => {
             </Slider>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
