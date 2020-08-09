@@ -36,7 +36,7 @@ const MoviesHome = () => {
     infinite: true,
     speed: 500,
     // lazyLoad: true,
-    slidesToShow: 6,
+    slidesToShow: 7,
     slidesToScroll: 7,
     className: 'slider',
 

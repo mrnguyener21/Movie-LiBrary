@@ -16,12 +16,13 @@ const Movies = () => {
   return (
     <>
       {
-        genreId === 0
-          ? <MoviesHome />
-          : <MoviesGenre />
-      }
+      genreId === 0
+        ? <MoviesHome />
+        : <MoviesGenre />
+    }
 
     </>
+  // <MoviesGenre />
   );
 };
 

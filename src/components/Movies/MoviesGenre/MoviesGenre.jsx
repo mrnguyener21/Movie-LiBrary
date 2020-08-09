@@ -9,31 +9,43 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MoviesNavbar } from '../..';
 import { fetchMovieCategory } from '../../../actions';
 
+import styles from './MoviesGenre.module.scss';
+
 const MoviesGenre = () => {
-  const dispatch = useDispatch();
-  // const movieGenres = useSelector((state) => state.movie);
   const { data: { results } } = useSelector((state) => state.movieGenre);
-  useEffect(() => {
-    dispatch(fetchMovieCategory('popular'));
-  }, []);
+  const { data: { page } } = useSelector((state) => state.movieGenre);
+  const { data } = useSelector((state) => state.movieGenre);
+  const { genreId } = useSelector((state) => state.movieGenre);
 
-  console.log({ results });
+  console.log(data);
 
+  let genre = '';
+  if (genreId === 28) {
+    genre = 'Action';
+  }
   return (
-    <div>
-      <MoviesNavbar />
-      {
+    <div className={styles.container}>
+      <MoviesNavbar className={styles.navbar} />
+      {/* <h2 className={styles.genre}>{genre}</h2> */}
+      <div className={styles.movieList}>
+        <h1 className={styles.genre}>{genre} Movies</h1>
+        {
           results.length
-            ? results.map(({ genre_ids, poster_path }) => (
-              <div>
-                <img alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+            ? results.map(({ title, poster_path }) => (
+              <div className={styles.movie}>
+                <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                <h3 className={styles.title}>{title}</h3>
               </div>
             ))
             : console.log('no')
         }
+      </div>
     </div>
   );
 };
 
 export default MoviesGenre;
 
+// create a state where as you click on the button, it will either increase the state by one or decrease by one. that will then be use as the pararms for page in order to display what want properly
+// if anything add to the chooseMovieGenre Reducer?
+// MAYBE LOOK INTO LAZY LOADING AND THEN PULL ALL THE PAGES AT ONCE
