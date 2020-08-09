@@ -22,7 +22,6 @@ const MoviesGenre = () => {
   return (
     <div>
       <MoviesNavbar />
-      <h1>movies </h1>
       {
           results.length
             ? results.map(({ genre_ids, poster_path }) => (
