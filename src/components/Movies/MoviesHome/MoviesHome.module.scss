@@ -4,34 +4,43 @@
   color: white;
   background: rgb(32, 32, 32);
   .movieContainer{
-    .posterContainer{
-      border-radius: 25px;
-      // border: solid white;
+    .category{
+      padding-left: 1%;
+    }
+    .sliderAffectedContainer{
 
-      padding-left: 3%;
+      padding-left: 3%; 
+    }
+    .posterContainer{
+      border-radius: 10px;
+      margin-right: 20%;
+      // width: 110%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      transform: scale(.98);
+      // max-height: 99%;
+      overflow: hidden;
+      &:hover{
+      background-color: #087099;
+      transform: scale(1);    
+      transition: transform .2s;
+      cursor: pointer;
+      // max-height: 100px;
+
+      }
 
 
       .poster{
-        border-radius: 25px;
-        width: 90%;
+        border-radius: 3px;
+        padding-bottom: 0;
+        width: 100%;
 
       }
       .title{
-        display: flex;
-        // border: solid white;
-        justify-content: center;
         text-align: center;
-        // padding-left: 5%;
-        // margin-top: 0%;
-
-        margin-bottom: 10%;
-        padding-left: 5%;
-        width: 80%;
+        padding-bottom: 10%;
       }
     }
   }
-}
-/* the slides */
-.slider{
-  border: solid yellow;
 }

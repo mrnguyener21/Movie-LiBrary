@@ -21,31 +21,6 @@ import { fetchMovieCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
-// function NextArrow(props) {
-//   const { className, style, onClick } = props;
-//   console.log('next');
-//   console.log(onClick);
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: 'block', background: 'red' }}
-//       onClick={onClick}
-//     />
-//   );
-// }
-
-// function PrevArrow(props) {
-//   const { className, style, onClick } = props;
-//   console.log('prev');
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: 'block', background: 'green' }}
-//       onClick={onClick}
-//     />
-//   );
-// }
-
 const MoviesHome = () => {
   const dispatch = useDispatch();
   const movieCategories = useSelector((state) => state.movie);
@@ -57,45 +32,13 @@ const MoviesHome = () => {
     dispatch(fetchMovieCategory('now_playing'));
   }, []);
 
-  function Arrow(props) {
-    const { className, style, onClick } = props;
-    console.log(props);
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'darkslategrey', borderRadius: '10px', height: '16.75px', width: '18px' }}
-        onClick={onClick}
-      />
-    );
-  }
-  const SamplePrevArrow = (props) => {
-    const { className, onClick } = props;
-    return (
-      <div
-        className={className}
-        onClick={onClick}
-      >
-        <FontAwesomeIcon
-          icon={faAngleDoubleLeft}
-          color="#000"
-          size="2x"
-        />
-      </div>
-    );
-  };
   const settings = {
     infinite: true,
     speed: 500,
-    lazyLoad: true,
-    // variableWidth: true,
-    // centerPadding: '50px',
+    // lazyLoad: true,
     slidesToShow: 6,
-    slidesToScroll: 6,
-    nextArrow: <Arrow />,
-    prevArrow: <Arrow />,
+    slidesToScroll: 7,
     className: 'slider',
-    useCSS: true,
-    // variableWidth: true,
 
   };
 
@@ -109,16 +52,19 @@ const MoviesHome = () => {
       <div className={styles.container}>
         {categories.map((category, i) => (
           <div className={styles.movieContainer}>
-            {category === 'upcoming' ? <h1>Upcoming Movies</h1> : null}
-            {category === 'popular' ? <h1>popular Movies</h1> : null}
-            {category === 'top_rated' ? <h1>Top Rated Movies</h1> : null}
-            {category === 'now_playing' ? <h1>Now Playing Movies</h1> : null}
+            {category === 'upcoming' ? <h2 className={styles.category}>Upcoming Movies</h2> : null}
+            {category === 'popular' ? <h2 className={styles.category}>popular Movies</h2> : null}
+            {category === 'top_rated' ? <h2 className={styles.category}>Top Rated Movies</h2> : null}
+            {category === 'now_playing' ? <h2 className={styles.category}>Now Playing Movies</h2> : null}
             <Slider className={styles.slide} {...settings}>
               {values[i].map(({ poster_path, title }) => (
                 poster_path ? (
-                  <div className={styles.posterContainer}>
-                    <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                    <h2 className={styles.title}>{title}</h2>
+                  <div className={styles.sliderAffectedContainer}>
+
+                    <div className={styles.posterContainer}>
+                      <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                      <h3 className={styles.title}>{title}</h3>
+                    </div>
                   </div>
                 ) : null
               ))}

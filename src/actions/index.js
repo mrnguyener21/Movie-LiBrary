@@ -8,7 +8,7 @@ import API from '../api';
 export const fetchMovieCategory = (category) => async (dispatch) => {
   const totalMovies = [];
 
-  for (let page = 1; page < 5; page++) {
+  for (let page = 1; page < 6; page++) {
     const { data: { results } } = await API.get(`/movie/${category}`, { params: { page } });
     totalMovies.push(...results);
 
