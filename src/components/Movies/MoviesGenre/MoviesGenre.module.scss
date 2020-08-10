@@ -37,6 +37,26 @@
             text-align: center;
         }
     }
+    .pagination{
+        // border: solid white;
+        color: white;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .arrow{
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        .pageNumber{
+            padding: 0 1%;
+            &:hover{
+                cursor: default;
+            }
+        }
+    }
 }
 .genre{
     // margin-top: 5

@@ -6,9 +6,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { MoviesNavbar } from '../..';
 import { fetchMovieCategory } from '../../../actions';
-
 import styles from './MoviesGenre.module.scss';
 
 const MoviesGenre = () => {
@@ -39,6 +40,12 @@ const MoviesGenre = () => {
             ))
             : console.log('no')
         }
+        <div className={styles.pagination}>
+          <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleLeft} size="2x" />
+          <h1 className={styles.pageNumber}>1</h1>
+          <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleRight} size="2x" />
+
+        </div>
       </div>
     </div>
   );
