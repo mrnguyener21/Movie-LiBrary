@@ -29,7 +29,7 @@ const GenreDropDown = () => {
       <Button style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Genre</Button>
       <StyledMenu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         {genres && genres.map(({ name, id }) => (
-          <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id))}>
+          <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id, 1))}>
             <Typography>{name}</Typography>
           </StyledMenuItem>
         ))}

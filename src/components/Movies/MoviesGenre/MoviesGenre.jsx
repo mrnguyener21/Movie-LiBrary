@@ -9,17 +9,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { MoviesNavbar } from '../..';
-import { fetchMovieCategory } from '../../../actions';
+import { chooseMovieGenre } from '../../../actions';
 import styles from './MoviesGenre.module.scss';
 
 const MoviesGenre = () => {
+  const dispatch = useDispatch();
   const { data: { results } } = useSelector((state) => state.movieGenre);
-  const { data: { page } } = useSelector((state) => state.movieGenre);
-  const { data } = useSelector((state) => state.movieGenre);
+  // const { data: { page } } = useSelector((state) => state.movieGenre);
   const { genreId } = useSelector((state) => state.movieGenre);
+  const { page } = useSelector((state) => state.movieGenre);
 
-  console.log(data);
-
+  console.log(page);
+  console.log(genreId);
+  let pageNumber = page;
   let genre = '';
   if (genreId === 28) {
     genre = 'Action';
@@ -41,9 +43,9 @@ const MoviesGenre = () => {
             : console.log('no')
         }
         <div className={styles.pagination}>
-          <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleLeft} size="2x" />
+          <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleLeft} size="2x" onClick={() => dispatch(chooseMovieGenre(genreId, pageNumber - 1)) && console.log(page)} />
           <h1 className={styles.pageNumber}>1</h1>
-          <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleRight} size="2x" />
+          <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleRight} size="2x" onClick={() => dispatch(chooseMovieGenre(genreId, pageNumber + 1)) && console.log(page)} />
 
         </div>
       </div>
