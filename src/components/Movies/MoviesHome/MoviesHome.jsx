@@ -38,21 +38,20 @@ const MoviesHome = () => {
     className: 'slider',
 
   };
-
   const categories = Object.keys(movieCategories);
   const values = Object.values(movieCategories);
-
   return (
     <div>
       <MoviesNavbar />
 
-      <div className={styles.container}>
+      <div className={styles.container} id="top">
         {categories.map((category, i) => (
           <div className={styles.movieContainer}>
             {category === 'upcoming' ? <h2 className={styles.category}>Upcoming Movies</h2> : null}
             {category === 'popular' ? <h2 className={styles.category}>popular Movies</h2> : null}
             {category === 'top_rated' ? <h2 className={styles.category}>Top Rated Movies</h2> : null}
             {category === 'now_playing' ? <h2 className={styles.category}>Now Playing Movies</h2> : null}
+
             <Slider className={styles.slide} {...settings}>
               {values[i].map(({ poster_path, title }) => (
                 poster_path ? (
@@ -69,7 +68,35 @@ const MoviesHome = () => {
 
           </div>
         ))}
+
+        {/* {categories.map((category, i) => (
+          <div className={styles.movieContainer}>
+            {category === 'upcoming' ? <h2 className={styles.category}>Upcoming Movies</h2> : null}
+            {category === 'popular' ? <h2 className={styles.category}>popular Movies</h2> : null}
+            {category === 'top_rated' ? <h2 className={styles.category}>Top Rated Movies</h2> : null}
+            {category === 'now_playing' ? <h2 className={styles.category}>Now Playing Movies</h2> : null}
+            {category === 'popular' ? (
+              <Slider className={styles.slide} {...settings}>
+                {values[i].map(({ genre_ids, poster_path, title }) => (
+                  genre_ids === 28 ? (
+                    <div className={styles.sliderAffectedContainer}>
+
+                      <div className={styles.posterContainer}>
+                        <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                        <h3 className={styles.title}>{title}</h3>
+                      </div>
+                    </div>
+                  ) : null
+                ))}
+              </Slider>
+
+            ) : console.log('did not pull popular')}
+
+          </div>
+        ))} */}
+
       </div>
+
     </div>
   );
 };

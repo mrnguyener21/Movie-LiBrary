@@ -22,10 +22,17 @@ export const fetchMovieGenre = () => async (dispatch) => {
   dispatch({ type: FETCH_MOVIE_GENRE, payload: data.genres });
 };
 
-export const chooseMovieGenre = (genreId, page) => async (dispatch) => {
-  const { data } = await API.get('/discover/movie', { params: { with_genres: genreId, page } });
+export const chooseMovieGenre = (genreId) => async (dispatch) => {
+  const totalMovies = [];
+  const pageNumber = 20;
+  for (let page = 1; page <= pageNumber; page++) {
+    const { data } = await API.get('/discover/movie', { params: { with_genres: genreId, page } });
+    totalMovies.push(...data.results);
+    // console.log(totalMovies);
+  }
+  const { data } = await API.get('/discover/movie', { params: { with_genres: genreId } });
 
-  dispatch({ type: CHOOSE_MOVIE_GENRE, payload: { genreId, results: data, page } });
+  dispatch({ type: CHOOSE_MOVIE_GENRE, payload: { genreId, totalMovies } });
 };
 
 export const paginationMovieGenre = (page) => async (dispatch) => {

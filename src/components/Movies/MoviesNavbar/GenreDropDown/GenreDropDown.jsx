@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Typography } from '@material-ui/core';
+import { Link } from 'react-scroll';
 import { StyledMenu, StyledMenuItem } from './GenreDropDown_Styles';
 import { fetchMovieGenre, chooseMovieGenre } from '../../../../actions';
 
@@ -29,10 +30,13 @@ const GenreDropDown = () => {
       <Button style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Genre</Button>
       <StyledMenu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         {genres && genres.map(({ name, id }) => (
+          <Link activeClass="active" to="top" spy smooth duration={400}>
+            <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id, 1))}>
+              <Typography>{name}</Typography>
+            </StyledMenuItem>
 
-          <StyledMenuItem onClick={() => dispatch(chooseMovieGenre(id, 1))}>
-            <Typography>{name}</Typography>
-          </StyledMenuItem>
+          </Link>
+
         ))}
       </StyledMenu>
     </div>
