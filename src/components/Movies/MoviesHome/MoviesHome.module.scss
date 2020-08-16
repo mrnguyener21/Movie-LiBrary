@@ -29,9 +29,12 @@
 
 
       .poster{
-        border-radius: 3px;
+        border-radius: 10px;
         padding-bottom: 0;
         width: 100%;
+        &:hover{
+          border-radius: 10px 10px 0 0;
+      }
 
       }
       .title{

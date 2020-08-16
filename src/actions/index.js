@@ -7,7 +7,6 @@ import API from '../api';
 
 export const fetchMovieCategory = (category) => async (dispatch) => {
   const totalMovies = [];
-
   for (let page = 1; page < 6; page++) {
     const { data: { results } } = await API.get(`/movie/${category}`, { params: { page } });
     totalMovies.push(...results);
@@ -24,15 +23,14 @@ export const fetchMovieGenre = () => async (dispatch) => {
 
 export const chooseMovieGenre = (genreId) => async (dispatch) => {
   const totalMovies = [];
-  const pageNumber = 20;
+  const pageNumber = 6;
   for (let page = 1; page <= pageNumber; page++) {
     const { data } = await API.get('/discover/movie', { params: { with_genres: genreId, page } });
     totalMovies.push(...data.results);
-    // console.log(totalMovies);
   }
   const { data } = await API.get('/discover/movie', { params: { with_genres: genreId } });
 
-  dispatch({ type: CHOOSE_MOVIE_GENRE, payload: { genreId, totalMovies } });
+  dispatch({ type: CHOOSE_MOVIE_GENRE, payload: { genreId, results: totalMovies } });
 };
 
 export const paginationMovieGenre = (page) => async (dispatch) => {
