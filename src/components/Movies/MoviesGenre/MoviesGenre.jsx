@@ -4,27 +4,29 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable camelcase */
 
-// import { Link } from 'react-scroll';
-// import LazyLoad, { lazyload } from 'react-lazyload';
-// import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { chooseMovieGenre } from '../../../actions';
+import { Link } from 'react-scroll';
+import LazyLoad, { lazyload } from 'react-lazyload';
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { chooseMovieGenre } from '../../../actions';
 import { MoviesNavbar } from '../..';
 import styles from './MoviesGenre.module.scss';
 
 const MoviesGenre = () => {
   const dispatch = useDispatch();
-
-  // const { page } = useSelector((state) => state.movieGenre);
+  const { page } = useSelector((state) => state.movieGenre);
   // const test = useSelector((state) => state.movieGenre);
   // const [pageNumber, setPageNumber] = useState(20);
   const { genreId } = useSelector((state) => state.movieGenre);
   const { data } = useSelector((state) => state.movieGenre);
-
+  let pageNumber = page;
   let genre = '';
+  let totalMovies = [...data.results];
+
+  // totalMovies.push(...data.results);
 
   switch (genreId) {
     case 28: genre = 'Action';
@@ -70,15 +72,15 @@ const MoviesGenre = () => {
       break;
   }
 
-  console.log(data.length);
+  console.log(console.log(totalMovies));
   return (
     <div id="top" className={styles.container}>
       <MoviesNavbar className={styles.navbar} />
       <div className={styles.movieList}>
         <h1 className={styles.genre}>{genre} Movies</h1>
         {
-             data.length
-               ? data.map(({ title, poster_path }) => (
+             totalMovies
+               ? totalMovies.map(({ title, poster_path }) => (
                  poster_path
                    ? (
                      <div className={styles.movie}>
@@ -87,12 +89,23 @@ const MoviesGenre = () => {
                      </div>
                    )
 
-                   : <div><h1>loading</h1></div>
+                   : null
                ))
                : null && console.log('no')
         }
 
-        <div className={styles.pagination} />
+        {/* <div className={styles.pagination} />
+         */}
+        <div className={styles.pagination}>
+          <Link activeClass="active" to="top" spy smooth duration={400}>
+            <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleLeft} size="2x" onClick={() => dispatch(chooseMovieGenre(genreId, pageNumber - 1)) && console.log(page)} />
+          </Link>
+          <h1 className={styles.pageNumber}>{pageNumber}</h1>
+          <Link activeClass="active" to="top" spy smooth duration={400}>
+            <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleRight} size="2x" onClick={() => dispatch(chooseMovieGenre(genreId, pageNumber + 1))} />
+          </Link>
+
+        </div>
       </div>
     </div>
   );
@@ -100,3 +113,4 @@ const MoviesGenre = () => {
 
 export default MoviesGenre;
 
+// go back to the button approach and back to where we showed one page at a time, but this time we push that current page into an array. everytime we click the button load more we go to the next page, that page is pushed through the array and it is mapped through.
