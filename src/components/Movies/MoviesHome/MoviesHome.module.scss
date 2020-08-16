@@ -11,18 +11,23 @@
       padding-left: 3%; 
     }
     .posterContainer{
+      // border: solid;
       border-radius: 10px;
       margin-right: 5%;
       display: flex;
       align-items: center;
       flex-direction: column;
-      transform: scale(.98);
- 
+      transform: scale(.97);
+      // background-image: linear-gradient(to bottom, transparent 50%, #087099 50%);
+      // background-size: 100% 200%;
+
       &:hover{
       background-color: #087099;
+      // background-position: 0 -100%;
+
       transform: scale(1);    
       transition: transform .2s;
-      transition: background-position 1s;
+      // transition: background-position .05s;
       cursor: pointer;
 
       }
