@@ -5,11 +5,12 @@
 /* eslint-disable camelcase */
 
 import { Link } from 'react-scroll';
-import LazyLoad, { lazyload } from 'react-lazyload';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { chooseMovieGenre } from '../../../actions';
 import { MoviesNavbar } from '../..';
@@ -18,15 +19,10 @@ import styles from './MoviesGenre.module.scss';
 const MoviesGenre = () => {
   const dispatch = useDispatch();
   const { page } = useSelector((state) => state.movieGenre);
-  // const test = useSelector((state) => state.movieGenre);
-  // const [pageNumber, setPageNumber] = useState(20);
   const { genreId } = useSelector((state) => state.movieGenre);
-  const { data } = useSelector((state) => state.movieGenre);
+  const { data: { results } } = useSelector((state) => state.movieGenre);
   let pageNumber = page;
   let genre = '';
-  let totalMovies = [...data.results];
-
-  // totalMovies.push(...data.results);
 
   switch (genreId) {
     case 28: genre = 'Action';
@@ -72,20 +68,24 @@ const MoviesGenre = () => {
       break;
   }
 
-  console.log(console.log(totalMovies));
+  console.log(console.log(results));
+
   return (
     <div id="top" className={styles.container}>
       <MoviesNavbar className={styles.navbar} />
       <div className={styles.movieList}>
         <h1 className={styles.genre}>{genre} Movies</h1>
         {
-             totalMovies
-               ? totalMovies.map(({ title, poster_path }) => (
+             results
+               ? results.map(({ title, poster_path, vote_average }) => (
                  poster_path
                    ? (
                      <div className={styles.movie}>
                        <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                       <h3 className={styles.title}>{title}</h3>
+                       <h4 className={styles.title}>{title}</h4>
+                       <Box component="fieldset" mb={3} borderColor="transparent">
+                         <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
+                       </Box>
                      </div>
                    )
 
@@ -94,15 +94,13 @@ const MoviesGenre = () => {
                : null && console.log('no')
         }
 
-        {/* <div className={styles.pagination} />
-         */}
         <div className={styles.pagination}>
           <Link activeClass="active" to="top" spy smooth duration={400}>
             <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleLeft} size="2x" onClick={() => dispatch(chooseMovieGenre(genreId, pageNumber - 1)) && console.log(page)} />
           </Link>
           <h1 className={styles.pageNumber}>{pageNumber}</h1>
           <Link activeClass="active" to="top" spy smooth duration={400}>
-            <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleRight} size="2x" onClick={() => dispatch(chooseMovieGenre(genreId, pageNumber + 1))} />
+            <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleRight} size="2x" onClick={() => dispatch(chooseMovieGenre(genreId, pageNumber + 1)) && console.log(results)} />
           </Link>
 
         </div>

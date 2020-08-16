@@ -26,8 +26,6 @@
       cursor: pointer;
 
       }
-
-
       .poster{
         border-radius: 10px;
         padding-bottom: 0;
@@ -39,7 +37,9 @@
       }
       .title{
         text-align: center;
-        padding-bottom: 10%;
+      }
+      .rating{
+        color: white;
       }
     }
   }
