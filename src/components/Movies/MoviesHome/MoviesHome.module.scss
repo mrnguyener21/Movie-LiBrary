@@ -1,6 +1,5 @@
-
 .container{
-  padding: 5%;
+  padding: 3% 5%;
   color: white;
   .movieContainer{
     .category{
@@ -14,20 +13,18 @@
       // border: solid;
       border-radius: 10px;
       margin-right: 5%;
+      // width: 80%;
+      padding-bottom: 20%;
       display: flex;
       align-items: center;
       flex-direction: column;
       transform: scale(.97);
-      // background-image: linear-gradient(to bottom, transparent 50%, #087099 50%);
-      // background-size: 100% 200%;
-
+ 
       &:hover{
-      background-color: #087099;
-      // background-position: 0 -100%;
-
+      // background-color: #087099;
       transform: scale(1);    
       transition: transform .2s;
-      // transition: background-position .05s;
+      // transition: background-position 1s;
       cursor: pointer;
 
       }
@@ -36,7 +33,7 @@
         padding-bottom: 0;
         width: 100%;
         &:hover{
-          border-radius: 10px 10px 0 0;
+          // border-radius: 10px 10px 0 0;
       }
 
       }
