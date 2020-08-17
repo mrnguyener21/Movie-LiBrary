@@ -18,49 +18,39 @@ import { MoviesNavbar } from '../..';
 import { fetchMovieCategory, fetchMovieGenreCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
+// import movie from '../../../reducers/movie';
 
 const MoviesHome = () => {
   const dispatch = useDispatch();
   const movieCategories = useSelector((state) => state.movie);
+  const MovieGenreCategories = useSelector((state) => state.movieGenreHomePage);
 
-  useEffect(() => {
-    dispatch(fetchMovieCategory('upcoming'));
-    dispatch(fetchMovieCategory('popular'));
-    dispatch(fetchMovieCategory('top_rated'));
-    dispatch(fetchMovieCategory('now_playing'));
+  const movieCategorySelection = ['upcoming', 'popular', 'top_rated', 'now_playing'];
 
-    dispatch(fetchMovieGenreCategory('28'));
-    dispatch(fetchMovieGenreCategory('12'));
-    dispatch(fetchMovieGenreCategory('16'));
-    dispatch(fetchMovieGenreCategory('35'));
-    dispatch(fetchMovieGenreCategory('80'));
-    dispatch(fetchMovieGenreCategory('99'));
-    dispatch(fetchMovieGenreCategory('18'));
-    dispatch(fetchMovieGenreCategory('10751'));
-    dispatch(fetchMovieGenreCategory('14'));
-    dispatch(fetchMovieGenreCategory('36'));
-    dispatch(fetchMovieGenreCategory('27'));
-    dispatch(fetchMovieGenreCategory('10402'));
-    dispatch(fetchMovieGenreCategory('9648'));
-    dispatch(fetchMovieGenreCategory('10749'));
-    dispatch(fetchMovieGenreCategory('878'));
-    dispatch(fetchMovieGenreCategory('10770'));
-    dispatch(fetchMovieGenreCategory('53'));
-    dispatch(fetchMovieGenreCategory('10752'));
-    dispatch(fetchMovieGenreCategory('37'));
-  }, []);
-  console.log(movieCategories);
+  const movieGenreId = ['28', '12', '16', '35', '80', '99', '18', '10751', '14', '36', '27', '10402', '9648', '10749', '878', '10770', '53', '10752', '37'];
+
+  const categories = Object.keys(movieCategories);
+  const values = Object.values(movieCategories);
+  const genreCategories = Object.keys(MovieGenreCategories);
+  const genreValues = Object.values(MovieGenreCategories);
+
   const settings = {
     infinite: true,
     speed: 500,
-    // lazyLoad: true,
     slidesToShow: 7,
     slidesToScroll: 7,
     className: 'slider',
 
   };
-  const categories = Object.keys(movieCategories);
-  const values = Object.values(movieCategories);
+  useEffect(() => {
+    movieCategorySelection.map((category) => {
+      dispatch(fetchMovieCategory(category));
+    });
+    movieGenreId.map((genreId) => {
+      dispatch(fetchMovieGenreCategory(genreId));
+    });
+  }, []);
+
   return (
     <div>
       <MoviesNavbar />
@@ -68,30 +58,11 @@ const MoviesHome = () => {
       <div className={styles.container} id="top">
         {categories.map((category, i) => (
           <div className={styles.movieContainer}>
-            {category === 'upcoming' ? <h2 className={styles.category}>Upcoming Movies</h2> : null}
-            {category === 'popular' ? <h2 className={styles.category}>popular Movies</h2> : null}
-            {category === 'top_rated' ? <h2 className={styles.category}>Top Rated Movies</h2> : null}
-            {category === 'now_playing' ? <h2 className={styles.category}>Now Playing Movies</h2> : null}
 
-            {category === '28' ? <h2 className={styles.category}>Action Movies</h2> : null}
-            {category === '12' ? <h2 className={styles.category}>Adventure Movies</h2> : null}
-            {category === '16' ? <h2 className={styles.category}>Animation Movies</h2> : null}
-            {category === '35' ? <h2 className={styles.category}>Comedy Movies</h2> : null}
-            {category === '80' ? <h2 className={styles.category}>Crime Movies</h2> : null}
-            {category === '99' ? <h2 className={styles.category}>Documentary Movies</h2> : null}
-            {category === '18' ? <h2 className={styles.category}>Drama Movies</h2> : null}
-            {category === '10751' ? <h2 className={styles.category}>Family Movies</h2> : null}
-            {category === '14' ? <h2 className={styles.category}>Fantasy Movies</h2> : null}
-            {category === '36' ? <h2 className={styles.category}>History Movies</h2> : null}
-            {category === '27' ? <h2 className={styles.category}>Horror Movies</h2> : null}
-            {category === '10402' ? <h2 className={styles.category}>Music Movies</h2> : null}
-            {category === '9648' ? <h2 className={styles.category}>Mystery Movies</h2> : null}
-            {category === '10749' ? <h2 className={styles.category}>Romance Movies</h2> : null}
-            {category === '878' ? <h2 className={styles.category}>Science Fiction Movies</h2> : null}
-            {category === '10770' ? <h2 className={styles.category}>TV Movies</h2> : null}
-            {category === '53' ? <h2 className={styles.category}>Thriller Movies</h2> : null}
-            {category === '10752' ? <h2 className={styles.category}>War Movies</h2> : null}
-            {category === '37' ? <h2 className={styles.category}>Western Movies</h2> : null}
+            {category === 'upcoming' ? <h1 className={styles.category}>Upcoming Movies</h1> : null}
+            {category === 'popular' ? <h1 className={styles.category}>popular Movies</h1> : null}
+            {category === 'top_rated' ? <h1 className={styles.category}>Top Rated Movies</h1> : null}
+            {category === 'now_playing' ? <h1 className={styles.category}>Now Playing Movies</h1> : null}
 
             <LazyLoad>
               <Slider className={styles.slide} {...settings}>
@@ -107,7 +78,51 @@ const MoviesHome = () => {
                      </div>
                    ) : null
                  ))
-}
+                }
+              </Slider>
+            </LazyLoad>
+
+          </div>
+        ))}
+
+        {genreCategories.map((category, i) => (
+          <div className={styles.movieContainer}>
+
+            {category === '28' ? <h1 className={styles.category}>Action Movies</h1> : null}
+            {category === '12' ? <h1 className={styles.category}>Adventure Movies</h1> : null}
+            {category === '16' ? <h1 className={styles.category}>Animation Movies</h1> : null}
+            {category === '35' ? <h1 className={styles.category}>Comedy Movies</h1> : null}
+            {category === '80' ? <h1 className={styles.category}>Crime Movies</h1> : null}
+            {category === '99' ? <h1 className={styles.category}>Documentary Movies</h1> : null}
+            {category === '18' ? <h1 className={styles.category}>Drama Movies</h1> : null}
+            {category === '10751' ? <h1 className={styles.category}>Family Movies</h1> : null}
+            {category === '14' ? <h1 className={styles.category}>Fantasy Movies</h1> : null}
+            {category === '36' ? <h1 className={styles.category}>History Movies</h1> : null}
+            {category === '27' ? <h1 className={styles.category}>Horror Movies</h1> : null}
+            {category === '10402' ? <h1 className={styles.category}>Music Movies</h1> : null}
+            {category === '9648' ? <h1 className={styles.category}>Mystery Movies</h1> : null}
+            {category === '10749' ? <h1 className={styles.category}>Romance Movies</h1> : null}
+            {category === '878' ? <h1 className={styles.category}>Science Fiction Movies</h1> : null}
+            {category === '10770' ? <h1 className={styles.category}>TV Movies</h1> : null}
+            {category === '53' ? <h1 className={styles.category}>Thriller Movies</h1> : null}
+            {category === '10752' ? <h1 className={styles.category}>War Movies</h1> : null}
+            {category === '37' ? <h1 className={styles.category}>Western Movies</h1> : null}
+
+            <LazyLoad>
+              <Slider className={styles.slide} {...settings}>
+                {
+                 genreValues[i].map(({ poster_path }) => (
+                   poster_path ? (
+                     <div className={styles.sliderAffectedContainer}>
+
+                       <div className={styles.posterContainer}>
+                         <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+
+                       </div>
+                     </div>
+                   ) : null
+                 ))
+                }
               </Slider>
             </LazyLoad>
 
