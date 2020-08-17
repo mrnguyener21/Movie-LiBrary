@@ -1,19 +1,21 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppBar, Toolbar, IconButton, Typography, InputBase } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
 import GenreDropDown from './GenreDropDown/GenreDropDown';
-import { chooseMovieGenre } from '../../../actions';
+import CategoryDropDown from './CategoryDropDown/CategoryDropDown';
+import { chooseMovieGenre, chooseMovieCategory } from '../../../actions';
+
 import makeStyles from './styles';
 
 const MoviesNavbar = () => {
   const classes = makeStyles();
-
+  const test = useSelector((state) => state.chooseMovieGenre);
   const dispatch = useDispatch();
   return (
     <div className={classes.root}>
@@ -33,8 +35,9 @@ const MoviesNavbar = () => {
           </IconButton>
           <div className={classes.title}>
             <Typography className={classes.linkContainer}>
-              <Link className={classes.link} onClick={() => dispatch(chooseMovieGenre(0))} to="/movies">MOVIES</Link>
+              <Link className={classes.link} onClick={() => dispatch(chooseMovieCategory('home'))} to="/movies">MOVIES</Link>
               <Link className={classes.link} to="/tv">TV</Link>
+              <CategoryDropDown />
               <GenreDropDown />
             </Typography>
           </div>

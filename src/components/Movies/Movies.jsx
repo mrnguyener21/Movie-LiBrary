@@ -4,22 +4,46 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable prefer-const */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MoviesHome from './MoviesHome/MoviesHome';
+import MoviesCategory from './MoviesCategory/MoviesCategory';
 import MoviesGenre from './MoviesGenre/MoviesGenre';
 
 // const dispatch = useDispatch();
 
 const Movies = () => {
-  let { genreId } = useSelector((state) => state.movieGenre);
-
+  const { category } = useSelector((state) => state.movieGenre);
+  const { genreId } = useSelector((state) => state.movieGenre);
+  const test = useSelector((state) => state.movieGenre);
+  console.log(test);
   return (
     <>
-      {
+
+      {/* {(() => {
+        if (genreId > 0) {
+          return (
+            <MoviesGenre />
+          );
+        } if (category !== 'home') {
+          return (
+            <MoviesCategory />
+          );
+        }
+        if (genreId === 0) { console.log(test); }
+        return (
+          <MoviesHome />
+        );
+      })()} */}
+      {/* {
       genreId === 0
         ? <MoviesHome />
         : <MoviesGenre />
-    }
+    } */}
+      {
+        category === 'home'
+          ? <MoviesHome />
+          : <MoviesCategory />
+      }
 
     </>
   // <MoviesGenre />

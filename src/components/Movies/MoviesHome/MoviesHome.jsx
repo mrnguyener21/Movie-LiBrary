@@ -8,8 +8,6 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -18,7 +16,6 @@ import { MoviesNavbar } from '../..';
 import { fetchMovieCategory, fetchMovieGenreCategory } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
-// import movie from '../../../reducers/movie';
 
 const MoviesHome = () => {
   const dispatch = useDispatch();
