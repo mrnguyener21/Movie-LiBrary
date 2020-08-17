@@ -61,23 +61,23 @@ const MoviesHome = () => {
             {category === 'top_rated' ? <h1 className={styles.category}>Top Rated Movies</h1> : null}
             {category === 'now_playing' ? <h1 className={styles.category}>Now Playing Movies</h1> : null}
 
-            <LazyLoad>
-              <Slider className={styles.slide} {...settings}>
-                {
-                 values[i].map(({ poster_path }) => (
-                   poster_path ? (
-                     <div className={styles.sliderAffectedContainer}>
+            <Slider className={styles.slide} {...settings}>
+              {
+                  values[i].map(({ poster_path }) => (
+                    poster_path ? (
+                      <LazyLoad>
+                        <div className={styles.sliderAffectedContainer}>
 
-                       <div className={styles.posterContainer}>
-                         <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                          <div className={styles.posterContainer}>
+                            <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
 
-                       </div>
-                     </div>
-                   ) : null
-                 ))
+                          </div>
+                        </div>
+                      </LazyLoad>
+                    ) : null
+                  ))
                 }
-              </Slider>
-            </LazyLoad>
+            </Slider>
 
           </div>
         ))}

@@ -23,38 +23,41 @@ const MoviesNavbar = () => {
         position="static"
         color="transparent"
       >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            // color="red"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
+        <div className={classes.container}>
 
-          </IconButton>
-          <div className={classes.title}>
-            <Typography className={classes.linkContainer}>
-              <Link className={classes.link} onClick={() => dispatch(chooseMovieGenre(0))} to="/movies">MOVIES</Link>
-              <Link className={classes.link} to="/tv">TV</Link>
-              <CategoryDropDown />
-              <GenreDropDown />
-            </Typography>
-          </div>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+            // color="red"
+              aria-label="open drawer"
+            >
+              <MenuIcon />
+
+            </IconButton>
+            <div className={classes.title}>
+              <Typography className={classes.linkContainer}>
+                <Link className={classes.link} onClick={() => dispatch(chooseMovieGenre(0))} to="/movies">MOVIES</Link>
+                <Link className={classes.link} to="/tv">TV</Link>
+                <CategoryDropDown />
+                <GenreDropDown />
+              </Typography>
             </div>
-            <InputBase
-              placeholder="Search..."
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-        </Toolbar>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search..."
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </div>
+          </Toolbar>
+        </div>
       </AppBar>
     </div>
   );

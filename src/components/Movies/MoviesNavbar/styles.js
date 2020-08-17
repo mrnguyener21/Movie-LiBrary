@@ -9,6 +9,10 @@ export default makeStyles((theme) => ({
     width: '100%',
     zIndex: '1',
   },
+  container: {
+    // border: 'solid',
+    margin: '0 4.75%',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     // color: 'red',
@@ -34,7 +38,8 @@ export default makeStyles((theme) => ({
   link: {
     color: 'white',
     textDecoration: 'none',
-    paddingRight: '1%',
+    paddingRight: '.5%',
+    fontSize: '92%',
   },
   search: {
     position: 'relative',
