@@ -19,12 +19,12 @@ const Movies = () => {
   return (
     <>
 
-      {/* {(() => {
+      {(() => {
         if (genreId > 0) {
           return (
             <MoviesGenre />
           );
-        } if (category !== 'home') {
+        } if (category === 'popular' || category === 'upcoming' || category === 'top_rated' || category === 'now_playing') {
           return (
             <MoviesCategory />
           );
@@ -33,17 +33,17 @@ const Movies = () => {
         return (
           <MoviesHome />
         );
-      })()} */}
+      })()}
       {/* {
       genreId === 0
         ? <MoviesHome />
         : <MoviesGenre />
     } */}
-      {
-        category === 'home'
+      {/* {
+        category === ''
           ? <MoviesHome />
           : <MoviesCategory />
-      }
+      } */}
 
     </>
   // <MoviesGenre />

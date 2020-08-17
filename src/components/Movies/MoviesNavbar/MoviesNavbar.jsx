@@ -9,7 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import GenreDropDown from './GenreDropDown/GenreDropDown';
 import CategoryDropDown from './CategoryDropDown/CategoryDropDown';
-import { chooseMovieGenre, chooseMovieCategory } from '../../../actions';
+import { chooseMovieGenre } from '../../../actions';
 
 import makeStyles from './styles';
 
@@ -35,7 +35,7 @@ const MoviesNavbar = () => {
           </IconButton>
           <div className={classes.title}>
             <Typography className={classes.linkContainer}>
-              <Link className={classes.link} onClick={() => dispatch(chooseMovieCategory('home'))} to="/movies">MOVIES</Link>
+              <Link className={classes.link} onClick={() => dispatch(chooseMovieGenre(0))} to="/movies">MOVIES</Link>
               <Link className={classes.link} to="/tv">TV</Link>
               <CategoryDropDown />
               <GenreDropDown />

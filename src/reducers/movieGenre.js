@@ -1,6 +1,6 @@
 import { CHOOSE_MOVIE_GENRE, CHOOSE_MOVIE_CATEGORY } from '../constants/actionType';
 
-export default (state = { category: 'home', genreId: 0, results: [], page: 0 }, action) => {
+export default (state = { category: '', genreId: 0, results: [], page: 0 }, action) => {
   switch (action.type) {
     case CHOOSE_MOVIE_GENRE: return { genreId: action.payload.genreId, data: action.payload.results, page: action.payload.page };
 

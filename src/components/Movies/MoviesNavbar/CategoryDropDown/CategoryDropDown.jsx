@@ -30,7 +30,6 @@ const GenreDropDown = () => {
     <div>
       <Button style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Category</Button>
       <StyledMenu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-        {/* {genres && genres.map(({ name, id }) => ( */}
         <Link activeClass="active" to="top" spy smooth duration={400}>
           <StyledMenuItem onClick={() => dispatch(chooseMovieCategory('popular', 1))}>
             <Typography>Popular</Typography>
@@ -38,10 +37,15 @@ const GenreDropDown = () => {
           <StyledMenuItem onClick={() => dispatch(chooseMovieCategory('upcoming', 1))}>
             <Typography>Upcoming</Typography>
           </StyledMenuItem>
+          <StyledMenuItem onClick={() => dispatch(chooseMovieCategory('top_rated', 1))}>
+            <Typography>Top Rated</Typography>
+          </StyledMenuItem>
+          <StyledMenuItem onClick={() => dispatch(chooseMovieCategory('now_playing', 1))}>
+            <Typography>Now Playing</Typography>
+          </StyledMenuItem>
 
         </Link>
 
-        {/* // ))} */}
       </StyledMenu>
     </div>
   );

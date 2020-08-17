@@ -30,6 +30,10 @@ const MoviesCategory = () => {
       break;
     case 'upcoming': chosenCategory = 'Upcoming';
       break;
+    case 'top_rated': chosenCategory = 'Top Rated';
+      break;
+    case 'now_playing': chosenCategory = 'Now Playing';
+      break;
     default: chosenCategory = '';
   }
 
