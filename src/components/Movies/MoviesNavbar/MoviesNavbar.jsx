@@ -38,7 +38,7 @@ const MoviesNavbar = () => {
             <div className={classes.title}>
               <Typography className={classes.linkContainer}>
                 <Link className={classes.link} onClick={() => dispatch(chooseMovieGenre(0))} to="/movies">MOVIES</Link>
-                <Link className={classes.link} to="/tv">TV</Link>
+                <Link className={classes.link} to="/tvshows">TV SHOWS</Link>
                 <CategoryDropDown />
                 <GenreDropDown />
               </Typography>

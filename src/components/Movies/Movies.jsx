@@ -4,7 +4,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable prefer-const */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import MoviesHome from './MoviesHome/MoviesHome';
 import MoviesCategory from './MoviesCategory/MoviesCategory';
 import MoviesGenre from './MoviesGenre/MoviesGenre';
@@ -15,7 +15,6 @@ const Movies = () => {
   const { category } = useSelector((state) => state.movieGenre);
   const { genreId } = useSelector((state) => state.movieGenre);
   const test = useSelector((state) => state.movieGenre);
-  console.log(test);
   return (
     <>
 
@@ -34,6 +33,7 @@ const Movies = () => {
           <MoviesHome />
         );
       })()}
+
       {/* {
       genreId === 0
         ? <MoviesHome />

@@ -2,7 +2,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 
-import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, CHOOSE_MOVIE_CATEGORY, CHOOSE_MOVIE_GENRE, FETCH_MOVIE_GENRE_CATEGORY } from '../constants/actionType';
+import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, CHOOSE_MOVIE_CATEGORY, CHOOSE_MOVIE_GENRE, FETCH_MOVIE_GENRE_CATEGORY, INDIVIDUAL_MOVIE } from '../constants/actionType';
 import API from '../api';
 
 export const fetchMovieCategory = (category) => async (dispatch) => {
@@ -41,7 +41,7 @@ export const chooseMovieGenre = (genreId, page) => async (dispatch) => {
   dispatch({ type: CHOOSE_MOVIE_GENRE, payload: { genreId, results: data, page } });
 };
 
-// export const paginationMovieGenre = (page) => async (dispatch) => {
-//   const { data } = await API.get('/discover/movie', { params: { page } });
-//   dispatch({ type: PAGINATION_MOVIE_GENRE, payload: page, results: data });
-// };
+export const individualMovie = (movie_id) => async (dispatch) => {
+  const { data } = await API.get(`/movie/${movie_id}`);
+  dispatch({ type: INDIVIDUAL_MOVIE, payload: data });
+};

@@ -7,13 +7,14 @@
 /* eslint-disable no-console */
 /* eslint-disable react/button-has-type */
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import LazyLoad from 'react-lazyload';
 import { MoviesNavbar } from '../..';
-import { fetchMovieCategory, fetchMovieGenreCategory } from '../../../actions';
+import { fetchMovieCategory, fetchMovieGenreCategory, individualMovie } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
@@ -63,14 +64,14 @@ const MoviesHome = () => {
 
             <Slider className={styles.slide} {...settings}>
               {
-                  values[i].map(({ poster_path }) => (
+                  values[i].map(({ poster_path, id, title }) => (
                     poster_path ? (
                       <LazyLoad>
                         <div className={styles.sliderAffectedContainer}>
-
-                          <div className={styles.posterContainer}>
-                            <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-
+                          <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id))}>
+                            <Link className={styles.link} to="/individualMovie">
+                              <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                            </Link>
                           </div>
                         </div>
                       </LazyLoad>
