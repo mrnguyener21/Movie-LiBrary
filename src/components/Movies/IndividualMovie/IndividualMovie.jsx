@@ -20,7 +20,6 @@ const SelectedMovie = () => {
   const { overview } = useSelector((state) => state.individualMovie);
   const { runtime } = useSelector((state) => state.individualMovie);
   const { release_date } = useSelector((state) => state.individualMovie);
-  const notAvailable = 'N/A';
 
   console.log(test);
   return (
@@ -30,7 +29,7 @@ const SelectedMovie = () => {
       <div className={styles.movieContainer}>
         <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
         <div className={styles.infoContainer}>
-          <h1>{title}</h1>
+          <h1 className={styles.title}>{title}</h1>
           <h2>{tagline}</h2>
           {
             vote_average === 0
@@ -53,10 +52,17 @@ const SelectedMovie = () => {
           </div>
           <div className={styles.runTimeContainer}>
             <h3 className={styles.description}>RUN TIME: </h3>
-
             <h3>{runtime === 0 ? 'N/A' : `${runtime} min.`}  </h3>
           </div>
-          <h2 className={styles.description}>SYNOPSIS</h2>
+          <div className={styles.genreContainer}>
+            <h3 className={styles.description}>GENRES:</h3>
+            {
+            genres
+              ? genres.map((genre) => <h3 className={styles.genre}>{genre.name} </h3>)
+              : console.log('no genre')
+            }
+          </div>
+          <h2 className={styles.description}>SYNOPSIS:</h2>
           <h3 className={styles.synopsis}>{overview}</h3>
         </div>
       </div>
