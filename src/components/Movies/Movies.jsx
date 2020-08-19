@@ -28,10 +28,11 @@ const Movies = () => {
             <MoviesCategory />
           );
         }
-        if (genreId === 0) { console.log(test); }
-        return (
-          <MoviesHome />
-        );
+        if (genreId === 0) {
+          return (
+            <MoviesHome />
+          );
+        }
       })()}
 
       {/* {

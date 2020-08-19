@@ -1,0 +1,55 @@
+.container{
+    color: white;
+}
+.movieContainer{
+    // border: solid white;
+    padding: 7% 7% 3% 7%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    // align-items: center;
+    .poster{
+        border-radius: 10px;
+    }
+    .infoContainer{
+        // border: solid yellow;
+        width: 50%;
+        margin-left: 5%;
+        padding-top: 2%;
+        // padding: 5%;
+    }
+    .title{
+
+    }
+    .tagline{
+
+    }
+    .rating{
+        // border: solid;
+        color: white;
+        margin-left: -1%;
+    }
+    .releaseDateContainer{
+        // border: solid;
+        width: 25%;
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-between;
+    }
+    .runTimeContainer{
+        // border: solid;
+        width: 25%;
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-between;
+    }
+    .description{
+        padding-right: 5%;
+    }
+    .genres{
+
+    }
+    .synopsis{
+        // border: solid;
+    }
+}

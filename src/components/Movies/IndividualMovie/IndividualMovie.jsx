@@ -1,16 +1,54 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { useSelector } from 'react-redux';
+/* eslint-disable prefer-const */
+
+import Rating from '@material-ui/lab/Rating';
+
+import Box from '@material-ui/core/Box';
 import { MoviesNavbar } from '../..';
+import styles from './individualMovie.module.scss';
 
 const SelectedMovie = () => {
-  const check = useSelector((state) => state.individualMovie);
-  console.log(check);
+  const test = useSelector((state) => state.individualMovie);
+  const { title } = useSelector((state) => state.individualMovie);
+  const { tagline } = useSelector((state) => state.individualMovie);
+  const { poster_path } = useSelector((state) => state.individualMovie);
+  const { vote_average } = useSelector((state) => state.individualMovie);
+  const { genres } = useSelector((state) => state.individualMovie);
+  const { overview } = useSelector((state) => state.individualMovie);
+  const { runtime } = useSelector((state) => state.individualMovie);
+  const { release_date } = useSelector((state) => state.individualMovie);
 
+  console.log(test);
   return (
 
-    <div>
+    <div className={styles.container}>
       <MoviesNavbar />
-      {/* <h1>selected movies</h1> */}
+      <div className={styles.movieContainer}>
+        <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+        <div className={styles.infoContainer}>
+          <h1>{title}</h1>
+          <h2>{tagline}</h2>
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
+          </Box>
+          <div className={styles.releaseDateContainer}>
+            <h3 className={styles.description}>Release Date: </h3>
+            <h3>{release_date}</h3>
+          </div>
+          <div className={styles.runTimeContainer}>
+            <h3 className={styles.description}>Run Time: </h3>
+
+            <h3>{runtime} min.</h3>
+          </div>
+          <h2 className={styles.description}>SYNOPSIS</h2>
+          <h3 className={styles.synopsis}>{overview}</h3>
+        </div>
+      </div>
+      <div className={styles.recommendedMoviesContainer}>
+        <h1>recommended movies</h1>
+      </div>
     </div>
   );
 };

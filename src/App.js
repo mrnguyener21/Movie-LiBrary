@@ -13,7 +13,7 @@ const App = () => (
         <Route component={IndividualMovie} path="/individualmovie" />
         <Route component={TVShowsHome} path="/tvshows" />
         <Route to="/">
-          <Redirect to="/movie" />
+          <Redirect to="/movies" />
         </Route>
 
       </Switch>

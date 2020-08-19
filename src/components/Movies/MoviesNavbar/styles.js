@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: '#15314b',
-    position: 'fixed',
+    position: 'absolute',
     // border: ' solid white',
     width: '100%',
     zIndex: '1',
