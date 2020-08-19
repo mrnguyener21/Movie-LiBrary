@@ -69,7 +69,7 @@ const MoviesHome = () => {
                       <LazyLoad>
                         <div className={styles.sliderAffectedContainer}>
                           <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id))}>
-                            <Link className={styles.link} to="/individualMovie">
+                            <Link className={styles.link} to={`/individualmovie/${id}`}>
                               <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                             </Link>
                           </div>
