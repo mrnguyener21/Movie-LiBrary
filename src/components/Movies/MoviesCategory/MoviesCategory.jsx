@@ -4,17 +4,17 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable camelcase */
 
-import { Link } from 'react-scroll';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link as ReactScroll } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { chooseMovieCategory } from '../../../actions';
-import { MoviesNavbar } from '../..';
 import styles from './MoviesCategory.module.scss';
+import { chooseMovieCategory, individualMovie } from '../../../actions';
+import { MoviesNavbar } from '../..';
 
 const MoviesCategory = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const MoviesCategory = () => {
   const test = useSelector((state) => state.movieGenre);
   let pageNumber = page;
   let chosenCategory = '';
-
+  console.log(test);
   switch (category) {
     case 'popular': chosenCategory = 'Popular';
       break;
@@ -47,17 +47,21 @@ const MoviesCategory = () => {
 
         {
              results
-               ? results.map(({ title, poster_path, vote_average }) => (
-                 poster_path
+               ? results.map(({ title, poster_path, vote_average, id }) => (
+                 poster_path && id
                    ? (
-                     <div className={styles.movie}>
-                       <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                       <h4 className={styles.title}>{title}</h4>
-                       <Box component="fieldset" mb={3} borderColor="transparent">
-                         <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
-                       </Box>
+
+                     <div className={styles.movie} onClick={() => dispatch(individualMovie(id))}>
+                       <Link className={styles.link} to="/individualMovie">
+                         <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                         <h4 className={styles.title}>{title}</h4>
+                         <Box component="fieldset" mb={3} borderColor="transparent">
+                           <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
+                         </Box>
+                       </Link>
                      </div>
                    )
+
                    : null
                ))
                : null && console.log('no')
@@ -66,15 +70,15 @@ const MoviesCategory = () => {
 
         <div className={styles.pagination}>
 
-          <Link activeClass="active" to="top" spy smooth duration={400}>
+          <ReactScroll activeClass="active" to="top" spy smooth duration={400}>
             <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleLeft} size="2x" onClick={() => dispatch(chooseMovieCategory(category, pageNumber - 1)) && console.log(page)} />
-          </Link>
+          </ReactScroll>
           <h1 className={styles.pageNumber}>{pageNumber}</h1>
-          <Link activeClass="active" to="top" spy smooth duration={400}>
+          <ReactScroll activeClass="active" to="top" spy smooth duration={400}>
 
             <FontAwesomeIcon className={styles.arrow} icon={faAngleDoubleRight} size="2x" onClick={() => dispatch(chooseMovieCategory(category, pageNumber + 1)) && console.log(results)} />
 
-          </Link>
+          </ReactScroll>
 
         </div>
       </div>

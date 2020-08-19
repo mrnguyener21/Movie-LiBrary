@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Rating from '@material-ui/lab/Rating';
 
 import Box from '@material-ui/core/Box';
+import { DialogTitle } from '@material-ui/core';
 import { MoviesNavbar } from '../..';
 import styles from './individualMovie.module.scss';
 
@@ -19,6 +20,7 @@ const SelectedMovie = () => {
   const { overview } = useSelector((state) => state.individualMovie);
   const { runtime } = useSelector((state) => state.individualMovie);
   const { release_date } = useSelector((state) => state.individualMovie);
+  const notAvailable = 'N/A';
 
   console.log(test);
   return (
@@ -30,17 +32,29 @@ const SelectedMovie = () => {
         <div className={styles.infoContainer}>
           <h1>{title}</h1>
           <h2>{tagline}</h2>
-          <Box component="fieldset" mb={3} borderColor="transparent">
-            <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
-          </Box>
+          {
+            vote_average === 0
+              ? (
+                <div className={styles.ratingContainer}>
+                  <h3 className={styles.description}>RATING:</h3>
+                  <h3>N/A</h3>
+                </div>
+              )
+              : (
+                <Box component="fieldset" mb={3} borderColor="transparent">
+                  <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
+                </Box>
+              )
+
+          }
           <div className={styles.releaseDateContainer}>
-            <h3 className={styles.description}>Release Date: </h3>
+            <h3 className={styles.description}>RELEASE DATE: </h3>
             <h3>{release_date}</h3>
           </div>
           <div className={styles.runTimeContainer}>
-            <h3 className={styles.description}>Run Time: </h3>
+            <h3 className={styles.description}>RUN TIME: </h3>
 
-            <h3>{runtime} min.</h3>
+            <h3>{runtime === 0 ? 'N/A' : `${runtime} min.`}  </h3>
           </div>
           <h2 className={styles.description}>SYNOPSIS</h2>
           <h3 className={styles.synopsis}>{overview}</h3>

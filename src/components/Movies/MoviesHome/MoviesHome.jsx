@@ -109,13 +109,14 @@ const MoviesHome = () => {
             <LazyLoad>
               <Slider className={styles.slide} {...settings}>
                 {
-                 genreValues[i].map(({ poster_path }) => (
+                 genreValues[i].map(({ poster_path, id }) => (
                    poster_path ? (
                      <div className={styles.sliderAffectedContainer}>
 
-                       <div className={styles.posterContainer}>
-                         <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-
+                       <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id))}>
+                         <Link className={styles.link} to="/individualMovie">
+                           <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                         </Link>
                        </div>
                      </div>
                    ) : null
