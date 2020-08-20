@@ -14,9 +14,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import LazyLoad from 'react-lazyload';
 import { MoviesNavbar } from '../..';
-import { fetchMovieCategory, fetchMovieGenreCategory, individualMovie } from '../../../actions';
+import { fetchMovieCategory, fetchMovieGenreCategory, individualMovie, individualMovieCast } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
+import IndividualMovie from '../../../reducers/IndividualMovie';
 
 const MoviesHome = () => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const MoviesHome = () => {
                     poster_path ? (
                       <LazyLoad>
                         <div className={styles.sliderAffectedContainer}>
-                          <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id))}>
+                          <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id)) && dispatch(individualMovieCast(id))}>
                             <Link className={styles.link} to={`/individualmovie/${id}`}>
                               <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                             </Link>
