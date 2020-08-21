@@ -20,8 +20,9 @@ const SelectedMovie = () => {
   const { overview } = useSelector((state) => state.individualMovie);
   const { runtime } = useSelector((state) => state.individualMovie);
   const { release_date } = useSelector((state) => state.individualMovie);
+  const { cast } = useSelector((state) => state.individualMovie);
 
-  console.log(test);
+  console.log(cast);
   return (
 
     <div className={styles.container}>
@@ -59,6 +60,21 @@ const SelectedMovie = () => {
             {
             genres
               ? genres.map((genre) => <h3 className={styles.genre}>{genre.name} </h3>)
+              : console.log('no genre')
+            }
+          </div>
+          <div className={styles.castContainer}>
+            <h3 className={styles.description}>CAST:</h3>
+            {
+            cast
+              ? cast.map(({ name, profile_path }) => (
+                <div>
+
+                  {/* <img className={styles.castImage} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} /> */}
+                  <h3 className={styles.genre}>{name} </h3>
+                </div>
+              ))
+
               : console.log('no genre')
             }
           </div>
