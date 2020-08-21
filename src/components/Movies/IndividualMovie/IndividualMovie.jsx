@@ -1,12 +1,13 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable camelcase */
 import React from 'react';
 import { useSelector } from 'react-redux';
 /* eslint-disable prefer-const */
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Rating from '@material-ui/lab/Rating';
-
 import Box from '@material-ui/core/Box';
-import { DialogTitle } from '@material-ui/core';
 import { MoviesNavbar } from '../..';
 import styles from './individualMovie.module.scss';
 
@@ -21,6 +22,16 @@ const SelectedMovie = () => {
   const { runtime } = useSelector((state) => state.individualMovie);
   const { release_date } = useSelector((state) => state.individualMovie);
   const { cast } = useSelector((state) => state.individualMovie);
+
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+
+  };
 
   console.log(cast);
   return (
@@ -59,28 +70,36 @@ const SelectedMovie = () => {
             <h3 className={styles.description}>GENRES:</h3>
             {
             genres
-              ? genres.map((genre) => <h3 className={styles.genre}>{genre.name} </h3>)
+              ? genres.map(({ name }) => <h3 className={styles.genre}>{name} </h3>)
               : console.log('no genre')
             }
           </div>
           <div className={styles.castContainer}>
-            <h3 className={styles.description}>CAST:</h3>
-            {
+
+            <h2 className={styles.description}>CAST:</h2>
+            <Slider className={styles.slide} {...settings}>
+              {
             cast
               ? cast.map(({ name, profile_path }) => (
-                <div>
+                <div className={styles.sliderAffectedContainer}>
+                  <div className={styles.cast}>
+                    <div className={styles.castImageWrapper}>
 
-                  {/* <img className={styles.castImage} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} /> */}
-                  <h3 className={styles.genre}>{name} </h3>
+                      <img className={styles.castImage} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} />
+                    </div>
+                    <h4 className={styles.castName}>{name} </h4>
+                  </div>
                 </div>
               ))
 
               : console.log('no genre')
             }
+
+            </Slider>
+
           </div>
           <h2 className={styles.description}>SYNOPSIS:</h2>
           <h3 className={styles.synopsis}>{overview}</h3>
-          <h2 className={styles.description}>CAST:</h2>
 
         </div>
       </div>

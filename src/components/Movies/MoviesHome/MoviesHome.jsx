@@ -67,15 +67,15 @@ const MoviesHome = () => {
               {
                   values[i].map(({ poster_path, id, title }) => (
                     poster_path ? (
-                      <LazyLoad>
-                        <div className={styles.sliderAffectedContainer}>
-                          <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id)) && dispatch(individualMovieCast(id))}>
-                            <Link className={styles.link} to={`/individualmovie/${id}`}>
-                              <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                            </Link>
-                          </div>
+                    // <LazyLoad>
+                      <div className={styles.sliderAffectedContainer}>
+                        <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id)) && dispatch(individualMovieCast(id))}>
+                          <Link className={styles.link} to={`/individualmovie/${id}`}>
+                            <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                          </Link>
                         </div>
-                      </LazyLoad>
+                      </div>
+                    // </LazyLoad>
                     ) : null
                   ))
                 }

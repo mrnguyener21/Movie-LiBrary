@@ -15,8 +15,7 @@
         // border: solid yellow;
         width: 50%;
         margin-left: 5%;
-        padding-top: 2%;
-        // padding: 5%;
+
     }
     .title{
         font-size: 50px;
@@ -45,16 +44,38 @@
         flex-direction: row;
     }
     .description{
-        // border:solid;
-        // color: #087099;
-        // font-weight: bolder;
+
         padding-right: 1.5%;
     }
     .genre{
         // border: solid;
         margin-right: 1%;
     }
-    .synopsis{
+    .cast{
         // border: solid;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // width: 50%;
+        .castImageWrapper{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;;
+        }
+        .castImage{
+            width: 100%;
+            height: auto;
+        }
+        .castName{
+            // border: solid;
+            text-align: center;
+        }
     }
+
 }
