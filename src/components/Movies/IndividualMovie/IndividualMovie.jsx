@@ -8,7 +8,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
+import { faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MoviesNavbar } from '../..';
+
 import styles from './individualMovie.module.scss';
 
 const SelectedMovie = () => {
@@ -30,7 +33,7 @@ const SelectedMovie = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-
+    arrows: false,
   };
 
   console.log(cast);
@@ -81,17 +84,31 @@ const SelectedMovie = () => {
               {
             cast
               ? cast.map(({ name, profile_path }) => (
-                <div className={styles.sliderAffectedContainer}>
-                  <div className={styles.cast}>
-                    <div className={styles.castImageWrapper}>
+                profile_path
 
-                      <img className={styles.castImage} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} />
+                  ? (
+                    <div className={styles.sliderAffectedContainer}>
+                      <div className={styles.cast}>
+                        <div className={styles.castImageWrapper}>
+
+                          <img className={styles.castImage} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} />
+                        </div>
+                        <h4 className={styles.castName}>{name} </h4>
+                      </div>
                     </div>
-                    <h4 className={styles.castName}>{name} </h4>
-                  </div>
-                </div>
-              ))
+                  )
+                  : (
+                    <div className={styles.sliderAffectedContainer}>
+                      <div className={styles.cast}>
+                        <div className={styles.profilePicWrapper}>
+                          <FontAwesomeIcon className={styles.profilePic} icon={faUserTie} size="4x" />
+                        </div>
+                        <h4 className={styles.profilePicName}>{name} </h4>
+                      </div>
+                    </div>
 
+                  )
+              ))
               : console.log('no genre')
             }
 
@@ -111,7 +128,4 @@ const SelectedMovie = () => {
 };
 
 export default SelectedMovie;
-// cast is from GET CREDIT
-// trailer is from get videos(im assuming)
-// recommendations from get recommendations
-// probably do something similar with the home page with how i set a category for each and then properly pulled from it based on thecateogry
+

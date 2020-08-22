@@ -76,6 +76,25 @@
             // border: solid;
             text-align: center;
         }
+        .profilePicWrapper{
+            border: solid;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;;
+        }
+        .profilePic{
+            // width: 50%;
+            height: auto;
+        }
+        .profilePicName{
+            // border: solid;
+            text-align: center;
+        }
     }
 
 }
