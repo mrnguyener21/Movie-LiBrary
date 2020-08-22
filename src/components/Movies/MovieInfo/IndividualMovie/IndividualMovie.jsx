@@ -10,11 +10,11 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MoviesNavbar } from '../..';
+import { MoviesNavbar } from '../../../index';
 
 import styles from './individualMovie.module.scss';
 
-const SelectedMovie = () => {
+const IndividualMovie = () => {
   const test = useSelector((state) => state.individualMovie);
   const { title } = useSelector((state) => state.individualMovie);
   const { tagline } = useSelector((state) => state.individualMovie);
@@ -127,5 +127,5 @@ const SelectedMovie = () => {
   );
 };
 
-export default SelectedMovie;
+export default IndividualMovie;
 

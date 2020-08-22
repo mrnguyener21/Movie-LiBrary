@@ -17,7 +17,6 @@ import { MoviesNavbar } from '../..';
 import { fetchMovieCategory, fetchMovieGenreCategory, individualMovie, individualMovieCast } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
-import IndividualMovie from '../../../reducers/IndividualMovie';
 
 const MoviesHome = () => {
   const dispatch = useDispatch();
