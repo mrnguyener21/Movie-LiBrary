@@ -26,7 +26,6 @@ const IndividualMovie = () => {
   const { runtime } = useSelector((state) => state.individualMovie);
   const { release_date } = useSelector((state) => state.individualMovie);
   const { cast } = useSelector((state) => state.individualMovie);
-  const recommendation = useSelector((state) => state.MovieRecommendation);
 
   const settings = {
     infinite: true,
@@ -38,7 +37,6 @@ const IndividualMovie = () => {
     arrows: false,
   };
 
-  console.log(recommendation);
   return (
 
     <div className={styles.container}>
