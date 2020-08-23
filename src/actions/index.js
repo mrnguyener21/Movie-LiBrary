@@ -2,7 +2,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 
-import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, CHOOSE_MOVIE_CATEGORY, CHOOSE_MOVIE_GENRE, FETCH_MOVIE_GENRE_CATEGORY, INDIVIDUAL_MOVIE, INDIVIDUAL_MOVIE_CAST } from '../constants/actionType';
+import { FETCH_MOVIE_CATEGORY, FETCH_MOVIE_GENRE, CHOOSE_MOVIE_CATEGORY, CHOOSE_MOVIE_GENRE, FETCH_MOVIE_GENRE_CATEGORY, INDIVIDUAL_MOVIE, INDIVIDUAL_MOVIE_CAST, MOVIE_RECOMMENDATION } from '../constants/actionType';
 import API from '../api';
 
 export const fetchMovieCategory = (category) => async (dispatch) => {
@@ -48,4 +48,9 @@ export const individualMovie = (movie_id) => async (dispatch) => {
 export const individualMovieCast = (movie_id) => async (dispatch) => {
   const { data: { cast } } = await API.get(`/movie/${movie_id}/credits`);
   dispatch({ type: INDIVIDUAL_MOVIE_CAST, payload: cast });
+};
+
+export const movieRecommendation = (movie_id) => async (dispatch) => {
+  const { data: { results } } = await API.get(`/movie/${movie_id}/recommendations`);
+  dispatch({ type: INDIVIDUAL_MOVIE_CAST, payload: results });
 };

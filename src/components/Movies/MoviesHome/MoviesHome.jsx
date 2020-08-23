@@ -14,7 +14,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import LazyLoad from 'react-lazyload';
 import { MoviesNavbar } from '../..';
-import { fetchMovieCategory, fetchMovieGenreCategory, individualMovie, individualMovieCast } from '../../../actions';
+import { fetchMovieCategory, fetchMovieGenreCategory, individualMovie, individualMovieCast, movieRecommendation } from '../../../actions';
 
 import styles from './MoviesHome.module.scss';
 
@@ -22,7 +22,6 @@ const MoviesHome = () => {
   const dispatch = useDispatch();
   const movieCategories = useSelector((state) => state.movie);
   const MovieGenreCategories = useSelector((state) => state.movieGenreHomePage);
-
   const movieCategorySelection = ['upcoming', 'popular', 'top_rated', 'now_playing'];
 
   const movieGenreId = ['28', '12', '16', '35', '80', '99', '18', '10751', '14', '36', '27', '10402', '9648', '10749', '878', '10770', '53', '10752', '37'];
@@ -49,6 +48,12 @@ const MoviesHome = () => {
     });
   }, []);
 
+  const something = (id) => {
+    dispatch(individualMovie(id));
+    dispatch(individualMovieCast(id));
+    dispatch(movieRecommendation(id));
+  };
+
   return (
     <div>
       <MoviesNavbar />
@@ -68,7 +73,7 @@ const MoviesHome = () => {
                     poster_path ? (
                     // <LazyLoad>
                       <div className={styles.sliderAffectedContainer}>
-                        <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id)) && dispatch(individualMovieCast(id))}>
+                        <div className={styles.posterContainer} onClick={() => something(id)}>
                           <Link className={styles.link} to={`/individualmovie/${id}`}>
                             <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                           </Link>

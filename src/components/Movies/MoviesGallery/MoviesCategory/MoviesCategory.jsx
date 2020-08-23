@@ -13,8 +13,8 @@ import Box from '@material-ui/core/Box';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './MoviesCategory.module.scss';
-import { chooseMovieCategory, individualMovie } from '../../../actions';
-import { MoviesNavbar } from '../..';
+import { chooseMovieCategory, individualMovie } from '../../../../actions';
+import { MoviesNavbar } from '../../..';
 
 const MoviesCategory = () => {
   const dispatch = useDispatch();

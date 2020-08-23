@@ -6,8 +6,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import MoviesHome from './MoviesHome/MoviesHome';
-import MoviesCategory from './MoviesCategory/MoviesCategory';
-import MoviesGenre from './MoviesGenre/MoviesGenre';
+// import MoviesCategory from './.MoviesInfo/MoviesCategory/MoviesCategory';
+// import MoviesGenre from './MoviesGenre/MoviesGenre';
+import { MoviesCategory, MoviesGenre } from '../index';
 
 // const dispatch = useDispatch();
 
@@ -35,19 +36,7 @@ const Movies = () => {
         }
       })()}
 
-      {/* {
-      genreId === 0
-        ? <MoviesHome />
-        : <MoviesGenre />
-    } */}
-      {/* {
-        category === ''
-          ? <MoviesHome />
-          : <MoviesCategory />
-      } */}
-
     </>
-  // <MoviesGenre />
   );
 };
 

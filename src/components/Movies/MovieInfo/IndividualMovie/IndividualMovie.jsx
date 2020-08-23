@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable camelcase */
+/* eslint-disable prefer-const */
 import React from 'react';
 import { useSelector } from 'react-redux';
-/* eslint-disable prefer-const */
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -12,6 +12,7 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MoviesNavbar } from '../../../index';
 
+import MovieRecommendation from '../MovieRecommendation/MovieRecommendation';
 import styles from './individualMovie.module.scss';
 
 const IndividualMovie = () => {
@@ -25,6 +26,7 @@ const IndividualMovie = () => {
   const { runtime } = useSelector((state) => state.individualMovie);
   const { release_date } = useSelector((state) => state.individualMovie);
   const { cast } = useSelector((state) => state.individualMovie);
+  const recommendation = useSelector((state) => state.MovieRecommendation);
 
   const settings = {
     infinite: true,
@@ -36,7 +38,7 @@ const IndividualMovie = () => {
     arrows: false,
   };
 
-  console.log(cast);
+  console.log(recommendation);
   return (
 
     <div className={styles.container}>
@@ -74,7 +76,7 @@ const IndividualMovie = () => {
             {
             genres
               ? genres.map(({ name }) => <h3 className={styles.genre}>{name} </h3>)
-              : console.log('no genre')
+              : null
             }
           </div>
           <div className={styles.castContainer}>
@@ -109,7 +111,7 @@ const IndividualMovie = () => {
 
                   )
               ))
-              : console.log('no genre')
+              : null
             }
 
             </Slider>
@@ -122,6 +124,7 @@ const IndividualMovie = () => {
       </div>
       <div className={styles.recommendedMoviesContainer}>
         <h1>recommended movies</h1>
+        <MovieRecommendation />
       </div>
     </div>
   );
