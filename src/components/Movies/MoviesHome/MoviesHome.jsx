@@ -48,7 +48,7 @@ const MoviesHome = () => {
     });
   }, []);
 
-  const something = (id) => {
+  const pickMovie = (id) => {
     dispatch(individualMovie(id));
     dispatch(individualMovieCast(id));
     dispatch(movieRecommendation(id));
@@ -73,7 +73,7 @@ const MoviesHome = () => {
                     poster_path ? (
                     // <LazyLoad>
                       <div className={styles.sliderAffectedContainer}>
-                        <div className={styles.posterContainer} onClick={() => something(id)}>
+                        <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
                           <Link className={styles.link} to={`/individualmovie/${id}`}>
                             <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                           </Link>
