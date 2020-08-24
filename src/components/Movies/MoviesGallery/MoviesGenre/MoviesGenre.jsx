@@ -14,13 +14,20 @@ import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './MoviesGenre.module.scss';
 import { MoviesNavbar } from '../../..';
-import { chooseMovieGenre, individualMovie } from '../../../../actions';
+import { chooseMovieGenre, individualMovie, individualMovieCast, movieRecommendation } from '../../../../actions';
 
 const MoviesGenre = () => {
   const dispatch = useDispatch();
   const { page } = useSelector((state) => state.movieGenre);
   const { genreId } = useSelector((state) => state.movieGenre);
   const { data: { results } } = useSelector((state) => state.movieGenre);
+
+  const pickMovie = (id) => {
+    dispatch(individualMovie(id));
+    dispatch(individualMovieCast(id));
+    dispatch(movieRecommendation(id));
+  };
+
   let pageNumber = page;
   let genre = '';
 
@@ -80,15 +87,19 @@ const MoviesGenre = () => {
                ? results.map(({ title, poster_path, vote_average, id }) => (
                  poster_path
                    ? (
-                     <div className={styles.movie} onClick={() => dispatch(individualMovie(id))}>
-                       <Link className={styles.link} to="/individualMovie">
-                         <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                         <h4 className={styles.title}>{title}</h4>
-                         <Box component="fieldset" mb={3} borderColor="transparent">
-                           <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
-                         </Box>
-                       </Link>
+                     <div className={styles.movie}>
+                       <ReactScroll activeClass="active" to="top" spy smooth duration={400}>
+                         <div onClick={() => pickMovie(id)}>
+                           <Link className={styles.link} to="/individualMovie">
+                             <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                             <h4 className={styles.title}>{title}</h4>
+                             <Box component="fieldset" mb={3} borderColor="transparent">
+                               <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
+                             </Box>
+                           </Link>
+                         </div>
 
+                       </ReactScroll>
                      </div>
                    )
 

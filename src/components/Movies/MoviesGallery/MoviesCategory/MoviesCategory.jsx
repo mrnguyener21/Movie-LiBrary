@@ -21,7 +21,6 @@ const MoviesCategory = () => {
   const { page } = useSelector((state) => state.movieGenre);
   const { category } = useSelector((state) => state.movieGenre);
   const { data: { results } } = useSelector((state) => state.movieGenre);
-  const test = useSelector((state) => state.movieGenre);
 
   const pickMovie = (id) => {
     dispatch(individualMovie(id));
