@@ -13,7 +13,7 @@ import Box from '@material-ui/core/Box';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './MoviesCategory.module.scss';
-import { chooseMovieCategory, individualMovie } from '../../../../actions';
+import { chooseMovieCategory, individualMovie, individualMovieCast, movieRecommendation } from '../../../../actions';
 import { MoviesNavbar } from '../../..';
 
 const MoviesCategory = () => {
@@ -22,9 +22,16 @@ const MoviesCategory = () => {
   const { category } = useSelector((state) => state.movieGenre);
   const { data: { results } } = useSelector((state) => state.movieGenre);
   const test = useSelector((state) => state.movieGenre);
+
+  const pickMovie = (id) => {
+    dispatch(individualMovie(id));
+    dispatch(individualMovieCast(id));
+    dispatch(movieRecommendation(id));
+  };
+
   let pageNumber = page;
   let chosenCategory = '';
-  console.log(test);
+
   switch (category) {
     case 'popular': chosenCategory = 'Popular';
       break;
@@ -50,16 +57,21 @@ const MoviesCategory = () => {
                ? results.map(({ title, poster_path, vote_average, id }) => (
                  poster_path && id
                    ? (
+                     <div className={styles.movie}>
+                       <ReactScroll activeClass="active" to="top" spy smooth duration={400}>
+                         <div onClick={() => pickMovie(id)}>
+                           <Link className={styles.link} to="/individualMovie">
+                             <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                             <h4 className={styles.title}>{title}</h4>
+                             <Box component="fieldset" mb={3} borderColor="transparent">
+                               <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
+                             </Box>
+                           </Link>
+                         </div>
 
-                     <div className={styles.movie} onClick={() => dispatch(individualMovie(id))}>
-                       <Link className={styles.link} to="/individualMovie">
-                         <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                         <h4 className={styles.title}>{title}</h4>
-                         <Box component="fieldset" mb={3} borderColor="transparent">
-                           <Rating className={styles.rating} name="read-only" value={(vote_average / 2)} readOnly />
-                         </Box>
-                       </Link>
+                       </ReactScroll>
                      </div>
+
                    )
 
                    : null
