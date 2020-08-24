@@ -8,6 +8,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Link as ReactScroll } from 'react-scroll';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -72,13 +73,17 @@ const MoviesHome = () => {
                   values[i].map(({ poster_path, id, title }) => (
                     poster_path ? (
                     // <LazyLoad>
-                      <div className={styles.sliderAffectedContainer}>
-                        <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
-                          <Link className={styles.link} to={`/individualmovie/${id}`}>
-                            <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                          </Link>
+                      <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
+
+                        <div className={styles.sliderAffectedContainer}>
+                          <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+                            <Link className={styles.link} to={`/individualmovie/${id}`}>
+                              <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                            </Link>
+                          </div>
                         </div>
-                      </div>
+                      </ReactScroll>
+
                     // </LazyLoad>
                     ) : null
                   ))
@@ -116,14 +121,17 @@ const MoviesHome = () => {
                 {
                  genreValues[i].map(({ poster_path, id }) => (
                    poster_path ? (
-                     <div className={styles.sliderAffectedContainer}>
+                     <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
+                       <div className={styles.sliderAffectedContainer}>
 
-                       <div className={styles.posterContainer} onClick={() => dispatch(individualMovie(id))}>
-                         <Link className={styles.link} to="/individualMovie">
-                           <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                         </Link>
+                         <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+                           <Link className={styles.link} to="/individualMovie">
+                             <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                           </Link>
+                         </div>
                        </div>
-                     </div>
+                     </ReactScroll>
+
                    ) : null
                  ))
                 }

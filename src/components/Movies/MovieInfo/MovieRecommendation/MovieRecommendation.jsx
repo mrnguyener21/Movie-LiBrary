@@ -27,9 +27,8 @@ const MovieRecommendation = () => {
             poster_path && title
               ? (
                 <div className={styles.movie}>
-                  <ReactScroll activeClass="active" to="individualMovie" spy smooth duration={400}>
+                  <ReactScroll activeClass="active" to="top" spy smooth duration={400}>
                     <div onClick={() => pickMovie(id)}>
-
                       <Link className={styles.link} to="/individualMovie">
                         <img className={styles.poster} alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                         <h4 className={styles.title}>{title}</h4>
@@ -43,7 +42,6 @@ const MovieRecommendation = () => {
                 </div>
 
               )
-
               : null
           ))
           : null

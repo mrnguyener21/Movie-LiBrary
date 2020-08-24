@@ -39,7 +39,7 @@ const IndividualMovie = () => {
 
   return (
 
-    <div className={styles.container} id="individualMovie">
+    <div className={styles.container} id="top">
       <MoviesNavbar />
       <div className={styles.movieContainer}>
         <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
