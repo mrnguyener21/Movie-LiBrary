@@ -32,7 +32,8 @@ const MoviesHome = () => {
   const values = Object.values(movieCategories);
   const genreCategories = Object.keys(MovieGenreCategories);
   const genreValues = Object.values(MovieGenreCategories);
-  console.log(values);
+  console.log(categories);
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -73,33 +74,42 @@ const MoviesHome = () => {
               {
 
                     values[i].map(({ poster_path, id, title }) => (
-                      poster_path ? (
-                      // <LazyLoad>
-                        <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
+                      // poster_path ? (
+                      <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
 
-                          <div className={styles.sliderAffectedContainer}>
-                            <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+                        <div className={styles.sliderAffectedContainer}>
+                          <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+                            {categories.length === 5 ? (
                               <Link className={styles.link} to={`/individualmovie/${id}`}>
                                 <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                               </Link>
-                            </div>
+                            ) : (
+                              <Loader
+                                type="Grid"
+                                color="#00BFFF"
+                                height={100}
+                                width={100}
+                                timeout={1000}
+                              />
+                            )}
+
                           </div>
-                        </ReactScroll>
-
-                      // </LazyLoad>
-                      ) : (
-                        <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
-
-                          <Loader
-                            type="Grid"
-                            color="#00BFFF"
-                            height={100}
-                            width={100}
-                            timeout={1000}
-                          />
                         </div>
+                      </ReactScroll>
 
-                      )
+                      // ) : (
+                      // <Loader
+                      //   type="Grid"
+                      //   color="#00BFFF"
+                      //   height={100}
+                      //   width={100}
+                      //   timeout={1000}
+                      // />
+                      // <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+
+                      // </div>
+
+                      // )
                     ))
 
                 }
@@ -135,19 +145,27 @@ const MoviesHome = () => {
               <Slider className={styles.slide} {...settings}>
                 {
                  genreValues[i].map(({ poster_path, id }) => (
-                   poster_path ? (
-                     <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
-                       <div className={styles.sliderAffectedContainer}>
-
-                         <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+                   <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
+                     <div className={styles.sliderAffectedContainer}>
+                       <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+                         {categories.length === 5 ? (
                            <Link className={styles.link} to="/individualMovie">
                              <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                            </Link>
-                         </div>
-                       </div>
-                     </ReactScroll>
 
-                   ) : null
+                         ) : (
+                           <Loader
+                             type="Grid"
+                             color="#00BFFF"
+                             height={100}
+                             width={100}
+                             timeout={1000}
+                           />
+                         )}
+                       </div>
+                     </div>
+                   </ReactScroll>
+
                  ))
                 }
               </Slider>
