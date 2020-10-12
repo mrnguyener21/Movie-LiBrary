@@ -105,7 +105,7 @@ const MoviesGenre = () => {
 
                    : null
                ))
-               : null && console.log('no')
+               : console.log('no')
         }
 
         <div className={styles.pagination}>

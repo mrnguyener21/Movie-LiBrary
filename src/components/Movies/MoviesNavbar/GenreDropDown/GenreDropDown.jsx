@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { Link as ReactScroll } from 'react-scroll';
 
 import { StyledMenu, StyledMenuItem } from './GenreDropDown_Styles';

@@ -3,16 +3,14 @@
 /* eslint-disable no-undef */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Typography } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { Button } from '@material-ui/core';
 import { Link as ReactScroll } from 'react-scroll';
 import { StyledMenu, StyledMenuItem } from './CategoryDropDown_Styles';
 import { chooseMovieCategory } from '../../../../actions';
 
 const GenreDropDown = () => {
   const dispatch = useDispatch();
-  const test = useSelector((state) => state.movieGenre);
-  const { category } = useSelector((state) => state.movieGenre);
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,10 +19,6 @@ const GenreDropDown = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  //   useEffect(() => {
-  //     dispatch(fetchMovieGenre());
-  //   }, []);
 
   return (
     <div>

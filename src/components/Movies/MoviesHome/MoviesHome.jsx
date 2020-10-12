@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Loader from 'react-loader-spinner';
 import LazyLoad from 'react-lazyload';
 import { MoviesNavbar } from '../..';
 import { fetchMovieCategory, fetchMovieGenreCategory, individualMovie, individualMovieCast, movieRecommendation } from '../../../actions';
@@ -31,7 +32,7 @@ const MoviesHome = () => {
   const values = Object.values(movieCategories);
   const genreCategories = Object.keys(MovieGenreCategories);
   const genreValues = Object.values(MovieGenreCategories);
-
+  console.log(values);
   const settings = {
     infinite: true,
     speed: 500,
@@ -57,8 +58,8 @@ const MoviesHome = () => {
 
   return (
     <div>
-      <MoviesNavbar />
 
+      <MoviesNavbar />
       <div className={styles.container} id="top">
         {categories.map((category, i) => (
           <div className={styles.movieContainer}>
@@ -70,23 +71,37 @@ const MoviesHome = () => {
 
             <Slider className={styles.slide} {...settings}>
               {
-                  values[i].map(({ poster_path, id, title }) => (
-                    poster_path ? (
-                    // <LazyLoad>
-                      <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
 
-                        <div className={styles.sliderAffectedContainer}>
-                          <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
-                            <Link className={styles.link} to={`/individualmovie/${id}`}>
-                              <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
-                            </Link>
+                    values[i].map(({ poster_path, id, title }) => (
+                      poster_path ? (
+                      // <LazyLoad>
+                        <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
+
+                          <div className={styles.sliderAffectedContainer}>
+                            <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+                              <Link className={styles.link} to={`/individualmovie/${id}`}>
+                                <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+                              </Link>
+                            </div>
                           </div>
-                        </div>
-                      </ReactScroll>
+                        </ReactScroll>
 
-                    // </LazyLoad>
-                    ) : null
-                  ))
+                      // </LazyLoad>
+                      ) : (
+                        <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
+
+                          <Loader
+                            type="Grid"
+                            color="#00BFFF"
+                            height={100}
+                            width={100}
+                            timeout={1000}
+                          />
+                        </div>
+
+                      )
+                    ))
+
                 }
             </Slider>
 

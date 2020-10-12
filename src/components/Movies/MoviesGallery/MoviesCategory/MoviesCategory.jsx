@@ -75,7 +75,7 @@ const MoviesCategory = () => {
 
                    : null
                ))
-               : null && console.log('no')
+               : console.log('no')
 
         }
 
