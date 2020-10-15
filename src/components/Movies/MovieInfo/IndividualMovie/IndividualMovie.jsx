@@ -26,6 +26,7 @@ const IndividualMovie = () => {
   const { runtime } = useSelector((state) => state.individualMovie);
   const { release_date } = useSelector((state) => state.individualMovie);
   const { cast } = useSelector((state) => state.individualMovie);
+  const video = useSelector((state) => state.individualMovie);
 
   const settings = {
     infinite: true,
@@ -36,7 +37,7 @@ const IndividualMovie = () => {
     autoplaySpeed: 2000,
     arrows: false,
   };
-
+  console.log(video);
   return (
 
     <div className={styles.container} id="top">

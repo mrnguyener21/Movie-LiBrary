@@ -32,7 +32,7 @@ const MoviesHome = () => {
   const values = Object.values(movieCategories);
   const genreCategories = Object.keys(MovieGenreCategories);
   const genreValues = Object.values(MovieGenreCategories);
-  console.log(categories);
+  // console.log(categories);
 
   const settings = {
     infinite: true,
@@ -64,7 +64,7 @@ const MoviesHome = () => {
       <div className={styles.container} id="top">
         {categories.map((category, i) => (
           <div className={styles.movieContainer}>
-
+            {/* maybe change into a swtich statement */}
             {category === 'upcoming' ? <h1 className={styles.category}>Upcoming Movies</h1> : null}
             {category === 'popular' ? <h1 className={styles.category}>popular Movies</h1> : null}
             {category === 'top_rated' ? <h1 className={styles.category}>Top Rated Movies</h1> : null}
@@ -74,7 +74,6 @@ const MoviesHome = () => {
               {
 
                     values[i].map(({ poster_path, id, title }) => (
-                      // poster_path ? (
                       <ReactScroll activeClass="active" to="top" spy smooth duration={10}>
 
                         <div className={styles.sliderAffectedContainer}>
@@ -84,32 +83,19 @@ const MoviesHome = () => {
                                 <img alt={poster_path} className={styles.poster} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
                               </Link>
                             ) : (
-                              <Loader
-                                type="Grid"
-                                color="#00BFFF"
-                                height={100}
-                                width={100}
-                                timeout={1000}
-                              />
+                              // <Loader
+                              //   type="Grid"
+                              //   color="#00BFFF"
+                              //   height={100}
+                              //   width={100}
+                              //   timeout={1000}
+                              // />
+                              null
                             )}
 
                           </div>
                         </div>
                       </ReactScroll>
-
-                      // ) : (
-                      // <Loader
-                      //   type="Grid"
-                      //   color="#00BFFF"
-                      //   height={100}
-                      //   width={100}
-                      //   timeout={1000}
-                      // />
-                      // <div className={styles.posterContainer} onClick={() => pickMovie(id)}>
-
-                      // </div>
-
-                      // )
                     ))
 
                 }
@@ -120,7 +106,7 @@ const MoviesHome = () => {
 
         {genreCategories.map((category, i) => (
           <div className={styles.movieContainer}>
-
+            {/* maybe change into a swtich statement */}
             {category === '28' ? <h1 className={styles.category}>Action Movies</h1> : null}
             {category === '12' ? <h1 className={styles.category}>Adventure Movies</h1> : null}
             {category === '16' ? <h1 className={styles.category}>Animation Movies</h1> : null}
@@ -154,13 +140,14 @@ const MoviesHome = () => {
                            </Link>
 
                          ) : (
-                           <Loader
-                             type="Grid"
-                             color="#00BFFF"
-                             height={100}
-                             width={100}
-                             timeout={1000}
-                           />
+                         //  <Loader
+                         //    type="Grid"
+                         //    color="#00BFFF"
+                         //    height={100}
+                         //    width={100}
+                         //    timeout={1000}
+                         //  />
+                           null
                          )}
                        </div>
                      </div>
