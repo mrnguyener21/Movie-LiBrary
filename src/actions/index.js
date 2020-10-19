@@ -51,8 +51,8 @@ export const individualMovieCast = (movie_id) => async (dispatch) => {
 };
 
 export const IndividualMovieTrailer = (movie_id) => async (dispatch) => {
-  const { data } = await API.get(`/movie/${movie_id}/videos`);
-  dispatch({ type: INDIVIDUAL_MOVIE_TRAILER, payload: data });
+  const { data: { video } } = await API.get(`/movie/${movie_id}/videos`);
+  dispatch({ type: INDIVIDUAL_MOVIE_TRAILER, payload: video });
 };
 
 export const movieRecommendation = (movie_id) => async (dispatch) => {
