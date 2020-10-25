@@ -4,7 +4,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case INDIVIDUAL_MOVIE: return { ...state, ...action.payload };
     case INDIVIDUAL_MOVIE_CAST: return { ...state, cast: action.payload };
-    case INDIVIDUAL_MOVIE_TRAILER: return { ...state, trailer: action.payload };
+    case INDIVIDUAL_MOVIE_TRAILER: return { ...state, trailer: action.payload.results };
 
     default: return state;
   }

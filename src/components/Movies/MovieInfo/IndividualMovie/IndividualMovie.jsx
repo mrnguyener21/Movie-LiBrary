@@ -37,7 +37,7 @@ const IndividualMovie = () => {
     autoplaySpeed: 2000,
     arrows: false,
   };
-  console.log(test);
+  // console.log(test);
   return (
 
     <div className={styles.container} id="top">
