@@ -5,7 +5,7 @@ import { Link as ReactScroll } from 'react-scroll';
 import { Link } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-import recommendationNotFound from '../../images/recommendationNotFound.svg';
+import recommendationNotFound from '../../movieImages/recommendationNotFound.svg';
 
 import { individualMovie, individualMovieCast, movieRecommendation } from '../../../../actions';
 import styles from './MovieRecommendation.module.scss';
@@ -24,8 +24,8 @@ const MovieRecommendation = () => {
     <div className={styles.container}>
       {
 
-        recommendation.length < 0
-          ? console.log(recommendation) && recommendation.map(({ title, poster_path, vote_average, id }) => (
+        recommendation.length > 0
+          ? recommendation.map(({ title, poster_path, vote_average, id }) => (
             poster_path && title
               ? (
                 <div className={styles.movie}>
@@ -48,7 +48,7 @@ const MovieRecommendation = () => {
           ))
           : (
             <div className={styles.noRecommendationFoundContainer}>
-              <h4 className={styles.noRecommendationFoundTitle}>Unfortunately there are no recommendations for the time being</h4>
+              <h1 className={styles.noRecommendationFoundTitle}>Unfortunately there are no recommendations for the time being</h1>
               <img className={styles.noRecommendationFoundImage} src={recommendationNotFound} alt="recommendationNotFound" />
             </div>
           )

@@ -67,4 +67,15 @@
             }
         }
     }
+    .noRecommendationFoundContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .noRecommendationFoundTitle{
+            margin-bottom: 100px;
+        }
+        .noRecommendationFoundImage{
+            width: 80%;   
+        }
+    }
 }
